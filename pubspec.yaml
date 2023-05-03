@@ -9,6 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_ml_kit: ^0.14.0
+  google_mlkit_text_recognition: ^0.6.0
+  image_picker: ^0.8.4+4
+  flutter_native_splash: ^2.2.19
   flutter_provider: ^2.1.0
   http: ^0.13.5
   flutter_dotenv: ^5.0.2
