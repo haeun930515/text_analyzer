@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:provider/provider.dart';
+import 'package:text_analyzer/provider/openai_provider.dart';
 import 'package:text_analyzer/ui/textinput/text_input_screen.dart';
 
 void main() async {
@@ -17,10 +19,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: TextInputScreen(),
+        body: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (_) => OpenAIProvider()),
+          ],
+          child: const TextInputScreen(),
         ),
       ),
     );

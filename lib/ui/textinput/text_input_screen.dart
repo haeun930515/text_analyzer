@@ -17,11 +17,10 @@ class TextInputScreen extends StatelessWidget {
             onSubmitted: (text) async {
               final chatAPIService =
                   Provider.of<OpenAIProvider>(context, listen: false);
-              chatAPIService.setText(text);
-              await chatAPIService.getText(); // 대답을 기다립니다.
+              await chatAPIService.getText(text);
               final answer = chatAPIService.answer ?? '대답이 없습니다.';
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(answer)),
+                SnackBar(content: Text((answer))),
               );
             },
           ),
