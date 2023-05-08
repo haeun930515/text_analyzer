@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // gpt와 연결될 provider
 // 결과 공유 할 sns provider
 class ChatAPIService with ChangeNotifier {
   Map<String, String> headers = {
-    "Authorization": dotenv.env['CHAT_API_KEY']!,
+    // "Authorization": dotenv.env['CHAT_API_KEY']!,
     "Content-Type": "application/json"
   };
 
