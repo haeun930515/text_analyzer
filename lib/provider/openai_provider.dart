@@ -6,6 +6,9 @@ import '../model/text_model.dart';
 
 class OpenAIProvider with ChangeNotifier {
   String? _answer;
+  bool finished = false;
+
+  bool get isFinished => finished;
 
   Future<void> getText(String text) async {
     final textBody = jsonEncode(TextSendModel(text).toJson());
@@ -19,6 +22,8 @@ class OpenAIProvider with ChangeNotifier {
       final ss = jsonDecode(utf8.decode(response.bodyBytes));
       String answer = {ss['choices'][0]['message']['content']}.toString();
       _answer = answer;
+      finished = true;
+      print(finished);
       notifyListeners();
     } else {
       _answer = '응답을 불러오지 못했습니다. 다시 시도해주세요.';

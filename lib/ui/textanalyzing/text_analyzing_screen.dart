@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:text_analyzer/provider/openai_provider.dart';
 
 class TextAnalyzingScreen extends StatelessWidget {
   const TextAnalyzingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    OpenAIProvider openAIProvider =
+        Provider.of<OpenAIProvider>(context, listen: false);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 45.0),
@@ -55,6 +59,7 @@ class TextAnalyzingScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30),
                                 )),
                             onPressed: () {
+                              openAIProvider.getText("안녕하세용");
                               Navigator.pushNamed(context, '/ai');
                             },
                             child: const Center(
