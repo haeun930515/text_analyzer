@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_analyzer/provider/kakao_provider.dart';
 import 'package:text_analyzer/ui/widgets/score_widget.dart';
 
 class ResultScreen extends StatelessWidget {
@@ -119,7 +120,17 @@ class ResultScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
+            Row(
+              children: const [
+                //카카오 공유하기 버튼
+                KakaoShareButton(
+                  text: '카카오로 공유하기',
+                ),
+                // 인스타 공유하기 버튼
+                // 페이스북 공유하기 버튼
+              ],
+            ),
           ]),
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
+import 'package:text_analyzer/provider/kakao_provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
 import 'package:text_analyzer/ui/textinput/text_input_screen.dart';
 import 'package:text_analyzer/ui/aiwork/ai_work_screen.dart';
@@ -16,7 +17,9 @@ void main() async {
   await dotenv.load();
   FlutterNativeSplash.remove(); // 초기화가 끝나는 시점에 삽입
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<OpenAIProvider>(create: (_) => OpenAIProvider())
+    ChangeNotifierProvider<OpenAIProvider>(create: (_) => OpenAIProvider()),
+    ChangeNotifierProvider<KakaoShareProvider>(
+        create: (_) => KakaoShareProvider()),
   ], child: const MainApp()));
 }
 
