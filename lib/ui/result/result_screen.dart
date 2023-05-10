@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_analyzer/provider/instar_provider.dart';
 import 'package:text_analyzer/provider/kakao_provider.dart';
 import 'package:text_analyzer/ui/widgets/score_widget.dart';
 
@@ -128,6 +129,9 @@ class ResultScreen extends StatelessWidget {
                   text: '카카오로 공유하기',
                 ),
                 // 인스타 공유하기 버튼
+                InstarShareButton(
+                  text: '인스타로 공유하기',
+                ),
                 // 페이스북 공유하기 버튼
               ],
             ),
