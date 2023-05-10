@@ -9,12 +9,23 @@ import 'package:text_analyzer/ui/aiwork/ai_work_screen.dart';
 import 'package:text_analyzer/ui/result/result_screen.dart';
 import 'package:text_analyzer/ui/start/start_screen.dart';
 import 'package:text_analyzer/ui/textanalyzing/text_analyzing_screen.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // 키 초기화
   await dotenv.load();
+
+  // runApp() 호출 전 Flutter SDK 초기화
+  KakaoSdk.init(
+    nativeAppKey: dotenv.env['KAKAO_NATIVE_APP_KEY']!,
+    javaScriptAppKey: dotenv.env['KAKAO_JS_APP_KEY']!,
+  );
+
+  // 카카오 로그인 해시 키 받는 함수
+  hasykey();
+
   FlutterNativeSplash.remove(); // 초기화가 끝나는 시점에 삽입
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<OpenAIProvider>(create: (_) => OpenAIProvider()),
@@ -40,4 +51,9 @@ class MainApp extends StatelessWidget {
       home: const StartScreen(),
     );
   }
+}
+
+void hasykey() async {
+  var hasykey = await KakaoSdk.origin;
+  print(hasykey);
 }
