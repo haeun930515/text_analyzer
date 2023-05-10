@@ -4,62 +4,62 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
 
-class InstarShareProvider extends ChangeNotifier {
+class FacebookShareProvider extends ChangeNotifier {
   static const MethodChannel _channel = MethodChannel('channel_name');
 
-  Future<void> instarShare(String imagePath) async {
+  Future<void> facebookShare(String imagePath) async {
     try {
       if (Platform.isAndroid) {
         // 안드로이드
         final bool isAndInstalled = await _channel.invokeMethod(
-            'checkInstalled', 'com.instagram.android');
+            'checkInstalled', 'com.facebook.android');
         if (!isAndInstalled) {
           final Uri url = Uri.parse(
-              'https://play.google.com/store/apps/details?id=com.instagram.android');
+              'https://play.google.com/store/apps/details?id=com.facebook.android');
           if (await canLaunchUrl(url)) {
             await launchUrl(url);
           } else {
-            throw '인스타그램 앱을 다운로드할 수 없습니다.';
+            throw '페이스북 앱을 다운로드할 수 없습니다.';
           }
         }
-        await _channel.invokeMethod('shareToInstagram', imagePath);
+        await _channel.invokeMethod('shareToFacebook', imagePath);
       } else if (Platform.isIOS) {
         // ios
         final bool isIosInstalled =
-            await canLaunchUrl(Uri.parse('instagram://'));
+            await canLaunchUrl(Uri.parse('facebook://'));
         if (!isIosInstalled) {
-          final Uri url = Uri.parse('https://apps.apple.com/kr/app/instagram/');
+          final Uri url = Uri.parse('https://apps.apple.com/kr/app/facebook/');
           if (await canLaunchUrl(url)) {
             await launchUrl(url);
           } else {
-            throw '인스타그램 앱을 다운로드할 수 없습니다.';
+            throw '페이스북 앱을 다운로드할 수 없습니다.';
           }
         }
-        await _channel.invokeMethod('shareToInstagram', imagePath);
+        await _channel.invokeMethod('shareToFacebook', imagePath);
       } else {
         throw '지원하지 않는 플랫폼입니다.';
       }
     } on PlatformException catch (e) {
-      throw '인스타그램 공유 실패: ${e.message}';
+      throw '페이스북 공유 실패: ${e.message}';
     }
   }
 }
 
-class InstarShareButton extends StatelessWidget {
+class FacebookShareButton extends StatelessWidget {
   final String text;
 
-  const InstarShareButton({super.key, required this.text});
+  const FacebookShareButton({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
-    InstarShareProvider instarProvider =
-        Provider.of<InstarShareProvider>(context, listen: false);
+    FacebookShareProvider facebookProvider =
+        Provider.of<FacebookShareProvider>(context, listen: false);
     return InkWell(
-      onTap: () => instarProvider.instarShare(''),
+      onTap: () => facebookProvider.facebookShare(''),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.red, // 버튼의 배경색 설정
+          color: Colors.blue, // 버튼의 배경색 설정
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(

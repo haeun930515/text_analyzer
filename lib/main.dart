@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
+import 'package:text_analyzer/provider/facebook_provider.dart';
 import 'package:text_analyzer/provider/instar_provider.dart';
 import 'package:text_analyzer/provider/kakao_provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
@@ -34,6 +35,8 @@ void main() async {
         create: (_) => KakaoShareProvider()),
     ChangeNotifierProvider<InstarShareProvider>(
         create: (_) => InstarShareProvider()),
+    ChangeNotifierProvider<FacebookShareProvider>(
+        create: (_) => FacebookShareProvider()),
   ], child: const MainApp()));
 }
 
