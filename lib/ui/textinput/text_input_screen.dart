@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_analyzer/ui/dialog/help_dialog.dart';
 
 class TextInputScreen extends StatelessWidget {
   const TextInputScreen({super.key});
@@ -51,28 +52,28 @@ class TextInputScreen extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16))),
                         child: Column(
-                          children: [
-                            const SizedBox(
+                          children: const [
+                            SizedBox(
                               height: 120,
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 30),
-                              child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 30),
+                              child: SizedBox(
                                 height: 50,
-                                decoration:
-                                    const BoxDecoration(color: Colors.white),
+                                width: 100,
+                                child: Icon(
+                                  Icons.textsms,
+                                  size: 50,
+                                ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            const Text(
+                            SizedBox(height: 30),
+                            Text(
                               "대화 붙여넣기",
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.bold),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 100,
                             )
                           ],
@@ -95,18 +96,7 @@ class TextInputScreen extends StatelessWidget {
                             onPressed: () {
                               showDialog(
                                   context: context,
-                                  builder: (context) => Dialog(
-                                        child: PageView(
-                                          children: <Widget>[
-                                            Container(
-                                              color: Colors.red,
-                                            ),
-                                            Container(
-                                              color: Colors.amber,
-                                            )
-                                          ],
-                                        ),
-                                      ));
+                                  builder: (context) => const HelpDialog());
                             },
                             child: const Center(
                               child: Text(

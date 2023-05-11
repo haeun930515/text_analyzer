@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
 
+import '../dialog/help_dialog.dart';
+
 class TextAnalyzingScreen extends StatelessWidget {
   const TextAnalyzingScreen({super.key});
 
@@ -23,14 +25,14 @@ class TextAnalyzingScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "나의",
+                      "우리의",
                       style:
                           TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: const [
                         Text(
-                          "티키타카력은?",
+                          "티키타캉은?",
                           style: TextStyle(
                               fontSize: 40, fontWeight: FontWeight.bold),
                         ),
@@ -44,8 +46,11 @@ class TextAnalyzingScreen extends StatelessWidget {
                       height: 80,
                     ),
                     const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 80),
-                      child: TextField(),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: TextField(
+                        maxLines: 8,
+                        maxLength: 500,
+                      ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,6 +72,27 @@ class TextAnalyzingScreen extends StatelessWidget {
                                 "다 입력 했어요",
                                 style: TextStyle(
                                     color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                side: const BorderSide(
+                                    width: 1.2, color: Color(0xFF2062f3)),
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                )),
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => const HelpDialog());
+                            },
+                            child: const Center(
+                              child: Text(
+                                "도움이 필요해요👉",
+                                style: TextStyle(
+                                    color: Color(0xFF2062f3),
                                     fontWeight: FontWeight.bold),
                               ),
                             )),

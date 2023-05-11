@@ -32,30 +32,43 @@ class AiWorkScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold),
           );
         }),
-        const SizedBox(
+        const SizedBox(height: 70),
+        Image.asset(
+          'assets/images/load_complete1.png',
           height: 300,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  )),
-              onPressed: () {
-                Navigator.pushNamed(context, '/result');
-              },
-              child: const Center(
-                child: Text(
-                  "나의 능력치는?",
-                  style: TextStyle(
-                      color: Color(0xFF2062f3),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24),
-                ),
-              )),
+        const SizedBox(
+          height: 40,
+        ),
+        Consumer<OpenAIProvider>(
+          builder: (context, provider, child) {
+            return provider.isFinished
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            )),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/result');
+                        },
+                        child: const Center(
+                          child: Text(
+                            "나의 능력치는?",
+                            style: TextStyle(
+                                color: Color(0xFF2062f3),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24),
+                          ),
+                        )),
+                  )
+                : const SizedBox(
+                    height: 0,
+                  );
+          },
         ),
       ]),
     );

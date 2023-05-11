@@ -30,7 +30,7 @@ class StartScreen extends StatelessWidget {
               ),
               const Center(
                 child: Text(
-                  "타카",
+                  "타캉",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 65,
@@ -40,14 +40,19 @@ class StartScreen extends StatelessWidget {
               const SizedBox(height: 30),
               const Center(
                 child: Text(
-                  "나의 대화 능력치는?",
+                  "우리의 대화 능력치는?",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              const SizedBox(height: 300),
+              const SizedBox(height: 20),
+              Image.asset(
+                "assets/images/loading1.png",
+                height: 300,
+              ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/input');
