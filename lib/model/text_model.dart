@@ -11,7 +11,7 @@ class TextSendModel {
         {"role": "user", "content": text},
         {
           "role": "user",
-          "content": "위 대화를 공격성, 사회성, 애정도, 호기심 네가지 기준으로 1부터 5까지 점수만줘"
+          "content": "위 대화를 쁨, 호기심, 경계, 분노, 불안 다섯가지 기준으로 1부터 5까지 점수만줘"
         }
       ],
       'model': model,

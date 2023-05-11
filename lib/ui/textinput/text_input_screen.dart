@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_analyzer/provider/text_from_image_provider.dart';
 import 'package:text_analyzer/ui/dialog/help_dialog.dart';
 
 class TextInputScreen extends StatelessWidget {
@@ -45,7 +46,7 @@ class TextInputScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           //이미지 피커 function to do
-                          Navigator.pushNamed(context, '/ing');
+                          TextFromImageProvider().getImageFromGallery();
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF2062f3),
