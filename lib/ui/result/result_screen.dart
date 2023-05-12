@@ -129,8 +129,9 @@ class ResultScreen extends StatelessWidget {
               Row(
                 children: [
                   //카카오 공유하기 버튼
-                  const KakaoShareButton(
+                  KakaoShareButton(
                     text: '카카오로 공유하기',
+                    globalKey: globalKey,
                   ),
                   // 인스타 공유하기 버튼
                   InstarShareButton(
