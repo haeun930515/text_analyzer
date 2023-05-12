@@ -5,6 +5,9 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 class TextFromImageProvider with ChangeNotifier {
   final TextRecognizer _textRecognizer =
       TextRecognizer(script: TextRecognitionScript.korean);
+  String inputTxt = "";
+
+  String get getTxtInput => inputTxt;
 
   getImageFromGallery() async {
     var picker = ImagePicker();
@@ -21,6 +24,8 @@ class TextFromImageProvider with ChangeNotifier {
         inputText += line.text;
       }
     }
-    print(inputText);
+    inputTxt = inputText;
+    notifyListeners();
+    print(inputTxt);
   }
 }

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/text_from_image_provider.dart';
 import 'package:text_analyzer/ui/dialog/help_dialog.dart';
+import 'package:text_analyzer/ui/textanalyzing/text_analyzing_screen.dart';
 
 class TextInputScreen extends StatelessWidget {
   const TextInputScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextFromImageProvider textFromImageProvider =
+        Provider.of<TextFromImageProvider>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 45.0),
@@ -44,9 +48,16 @@ class TextInputScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 80),
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           //이미지 피커 function to do
-                          TextFromImageProvider().getImageFromGallery();
+                          await TextFromImageProvider().getImageFromGallery();
+                          print(textFromImageProvider.getTxtInput);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TextAnalyzingScreen(
+                                        input: textFromImageProvider.inputTxt,
+                                      )));
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF2062f3),

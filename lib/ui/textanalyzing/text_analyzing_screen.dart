@@ -4,13 +4,23 @@ import 'package:text_analyzer/provider/openai_provider.dart';
 
 import '../dialog/help_dialog.dart';
 
-class TextAnalyzingScreen extends StatelessWidget {
-  const TextAnalyzingScreen({super.key});
+class TextAnalyzingScreen extends StatefulWidget {
+  const TextAnalyzingScreen({super.key, required this.input});
+
+  final String input;
+
+  @override
+  State<TextAnalyzingScreen> createState() => _TextAnalyzingScreenState();
+}
+
+class _TextAnalyzingScreenState extends State<TextAnalyzingScreen> {
+  TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     OpenAIProvider openAIProvider =
         Provider.of<OpenAIProvider>(context, listen: false);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 45.0),
@@ -45,12 +55,12 @@ class TextAnalyzingScreen extends StatelessWidget {
                     const SizedBox(
                       height: 80,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: TextField(
-                        maxLines: 8,
-                        maxLength: 500,
-                      ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                          maxLines: 8,
+                          maxLength: 500,
+                          initialValue: widget.input),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,8 +74,9 @@ class TextAnalyzingScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30),
                                 )),
                             onPressed: () {
-                              openAIProvider.getText("안녕하세용");
-                              Navigator.pushNamed(context, '/ai');
+                              print(widget.input);
+                              // openAIProvider.getText("안녕하세용");
+                              // Navigator.pushNamed(context, '/ai');
                             },
                             child: const Center(
                               child: Text(
