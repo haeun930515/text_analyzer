@@ -127,18 +127,20 @@ class ResultScreen extends StatelessWidget {
                 ),
               ),
               Row(
-                children: const [
+                children: [
                   //카카오 공유하기 버튼
-                  KakaoShareButton(
+                  const KakaoShareButton(
                     text: '카카오로 공유하기',
                   ),
                   // 인스타 공유하기 버튼
                   InstarShareButton(
                     text: '인스타로 공유하기',
+                    globalKey: globalKey,
                   ),
                   // 페이스북 공유하기 버튼
                   FacebookShareButton(
                     text: '페이스북으로 공유하기',
+                    globalKey: globalKey,
                   ),
                 ],
               ),

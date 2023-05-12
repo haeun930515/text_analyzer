@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:text_analyzer/model/capture_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
 
@@ -47,15 +48,24 @@ class InstarShareProvider extends ChangeNotifier {
 
 class InstarShareButton extends StatelessWidget {
   final String text;
+  GlobalKey globalKey;
 
-  const InstarShareButton({super.key, required this.text});
+  InstarShareButton({
+    super.key,
+    required this.text,
+    required this.globalKey,
+  });
 
   @override
   Widget build(BuildContext context) {
     InstarShareProvider instarProvider =
         Provider.of<InstarShareProvider>(context, listen: false);
+    Capture capture = Capture();
     return InkWell(
-      onTap: () => instarProvider.instarShare(''),
+      onTap: () async {
+        String imagePath = await capture.capture(globalKey);
+        await instarProvider.instarShare(imagePath);
+      },
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(

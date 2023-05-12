@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:text_analyzer/model/capture_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
 
@@ -47,15 +48,23 @@ class FacebookShareProvider extends ChangeNotifier {
 
 class FacebookShareButton extends StatelessWidget {
   final String text;
-
-  const FacebookShareButton({super.key, required this.text});
+  GlobalKey globalKey;
+  FacebookShareButton({
+    super.key,
+    required this.text,
+    required this.globalKey,
+  });
 
   @override
   Widget build(BuildContext context) {
     FacebookShareProvider facebookProvider =
         Provider.of<FacebookShareProvider>(context, listen: false);
+    Capture capture = Capture();
     return InkWell(
-      onTap: () => facebookProvider.facebookShare(''),
+      onTap: () async {
+        String imagePath = await capture.capture(globalKey);
+        await facebookProvider.facebookShare(imagePath);
+      },
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
