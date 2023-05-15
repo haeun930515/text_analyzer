@@ -9,7 +9,7 @@ class TextFromImageProvider with ChangeNotifier {
 
   String get getTxtInput => inputTxt;
 
-  getImageFromGallery() async {
+  Future<String> getImageFromGallery() async {
     var picker = ImagePicker();
     var image = await picker.pickImage(source: ImageSource.gallery);
     var inputImage = InputImage.fromFilePath(image!.path);
@@ -26,6 +26,6 @@ class TextFromImageProvider with ChangeNotifier {
     }
     inputTxt = inputText;
     notifyListeners();
-    print(inputTxt);
+    return inputText;
   }
 }

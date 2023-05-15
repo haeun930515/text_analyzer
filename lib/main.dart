@@ -8,8 +8,6 @@ import 'package:text_analyzer/provider/kakao_provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
 import 'package:text_analyzer/provider/text_from_image_provider.dart';
 import 'package:text_analyzer/ui/textinput/text_input_screen.dart';
-import 'package:text_analyzer/ui/aiwork/ai_work_screen.dart';
-import 'package:text_analyzer/ui/result/result_screen.dart';
 import 'package:text_analyzer/ui/start/start_screen.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
@@ -52,8 +50,6 @@ class MainApp extends StatelessWidget {
       routes: {
         '/start': (context) => const StartScreen(),
         '/input': (context) => const TextInputScreen(),
-        '/ai': (context) => const AiWorkScreen(),
-        '/result': (context) => const ResultScreen()
       },
       home: const StartScreen(),
     );

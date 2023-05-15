@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:text_analyzer/model/score_model.dart';
 import 'package:text_analyzer/provider/facebook_provider.dart';
 import 'package:text_analyzer/provider/instar_provider.dart';
 import 'package:text_analyzer/provider/kakao_provider.dart';
 import 'package:text_analyzer/ui/widgets/score_widget.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key});
+  const ResultScreen({super.key, required this.sm});
+
+  final ScoreModel sm;
 
   @override
   Widget build(BuildContext context) {
@@ -101,23 +104,23 @@ class ResultScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              ScoreWidget(5),
+                              ScoreWidget(sm.happiness),
                               const SizedBox(
                                 height: 20,
                               ),
-                              ScoreWidget(2),
+                              ScoreWidget(sm.curiosity),
                               const SizedBox(
                                 height: 20,
                               ),
-                              ScoreWidget(4),
+                              ScoreWidget(sm.anger),
                               const SizedBox(
                                 height: 20,
                               ),
-                              ScoreWidget(1),
+                              ScoreWidget(sm.anxiety),
                               const SizedBox(
                                 height: 20,
                               ),
-                              ScoreWidget(1)
+                              ScoreWidget(sm.vigilance)
                             ],
                           ),
                         ],

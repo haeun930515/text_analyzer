@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
+import 'package:text_analyzer/ui/aiwork/ai_work_screen.dart';
 
 import '../dialog/help_dialog.dart';
 
@@ -14,13 +15,13 @@ class TextAnalyzingScreen extends StatefulWidget {
 }
 
 class _TextAnalyzingScreenState extends State<TextAnalyzingScreen> {
-  TextEditingController textEditingController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     OpenAIProvider openAIProvider =
         Provider.of<OpenAIProvider>(context, listen: false);
 
+    TextEditingController textEditingController =
+        TextEditingController(text: widget.input);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 45.0),
@@ -58,9 +59,10 @@ class _TextAnalyzingScreenState extends State<TextAnalyzingScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: TextFormField(
-                          maxLines: 8,
-                          maxLength: 500,
-                          initialValue: widget.input),
+                        maxLines: 8,
+                        maxLength: 500,
+                        controller: textEditingController,
+                      ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,9 +76,11 @@ class _TextAnalyzingScreenState extends State<TextAnalyzingScreen> {
                                   borderRadius: BorderRadius.circular(30),
                                 )),
                             onPressed: () {
-                              print(widget.input);
-                              // openAIProvider.getText("안녕하세용");
-                              // Navigator.pushNamed(context, '/ai');
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => AiWorkScreen(
+                                          input: textEditingController.text)));
                             },
                             child: const Center(
                               child: Text(
