@@ -6,6 +6,7 @@ import 'package:text_analyzer/provider/facebook_provider.dart';
 import 'package:text_analyzer/provider/instar_provider.dart';
 import 'package:text_analyzer/provider/kakao_provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
+import 'package:text_analyzer/provider/result_provider.dart';
 import 'package:text_analyzer/provider/text_from_image_provider.dart';
 import 'package:text_analyzer/ui/textinput/text_input_screen.dart';
 import 'package:text_analyzer/ui/start/start_screen.dart';
@@ -37,6 +38,7 @@ void main() async {
         create: (_) => InstarShareProvider()),
     ChangeNotifierProvider<FacebookShareProvider>(
         create: (_) => FacebookShareProvider()),
+    ChangeNotifierProvider<ResultProvider>(create: (_) => ResultProvider()),
   ], child: const MainApp()));
 }
 
