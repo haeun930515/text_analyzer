@@ -1,13 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
+import 'package:text_analyzer/ui/result/result_screen.dart';
 
-class AiWorkScreen extends StatelessWidget {
-  const AiWorkScreen({super.key});
+import '../../model/score_model.dart';
+
+class AiWorkScreen extends StatefulWidget {
+  const AiWorkScreen({super.key, required this.input});
+
+  final String input;
+
+  @override
+  State<AiWorkScreen> createState() => _AiWorkScreenState();
+}
+
+//ScoreModel score = await openAIProvider
+// .getText(textEditingController.text);
+class _AiWorkScreenState extends State<AiWorkScreen> {
+  late ScoreModel score;
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    score = await OpenAIProvider().getText(widget.input);
+  }
 
   @override
   Widget build(BuildContext context) {
-    OpenAIProvider openAIProvider = Provider.of<OpenAIProvider>(context);
+    OpenAIProvider openAIProvider =
+        Provider.of<OpenAIProvider>(context, listen: true);
+    openAIProvider.getText(widget.input);
     return Scaffold(
       backgroundColor: const Color(0xFF2062f3),
       body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -23,7 +48,6 @@ class AiWorkScreen extends StatelessWidget {
               fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
         ),
         Consumer<OpenAIProvider>(builder: (context, provider, child) {
-          print(provider.finished.toString());
           return Text(
             provider.isFinished ? "완료" : "ing",
             style: const TextStyle(
@@ -53,7 +77,12 @@ class AiWorkScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(30),
                             )),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/result');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ResultScreen(
+                                        sm: score,
+                                      )));
                         },
                         child: const Center(
                           child: Text(

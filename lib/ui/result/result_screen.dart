@@ -1,15 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:text_analyzer/model/score_model.dart';
 import 'package:text_analyzer/provider/facebook_provider.dart';
 import 'package:text_analyzer/provider/instar_provider.dart';
 import 'package:text_analyzer/provider/kakao_provider.dart';
+import 'package:text_analyzer/provider/result_provider.dart';
 import 'package:text_analyzer/ui/widgets/score_widget.dart';
 
-class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key});
+class ResultScreen extends StatefulWidget {
+  const ResultScreen({super.key, required this.sm});
+
+  final ScoreModel sm;
+
+  @override
+  State<ResultScreen> createState() => _ResultScreenState();
+}
+
+class _ResultScreenState extends State<ResultScreen> {
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    await ResultProvider().getResult(widget.sm);
+  }
 
   @override
   Widget build(BuildContext context) {
     var globalKey = GlobalKey();
+    ResultProvider resultProvider =
+        Provider.of<ResultProvider>(context, listen: true);
+    resultProvider.getResult(widget.sm);
+    var photo1 = resultProvider.photo1;
+    var photo2 = resultProvider.photo2;
+    var title = resultProvider.title;
+    var sub = resultProvider.sub;
+    print(photo1);
+    print(photo2);
+    print(title);
+    print(sub);
     return RepaintBoundary(
       key: globalKey,
       child: Scaffold(
@@ -26,22 +57,26 @@ class ResultScreen extends StatelessWidget {
                 child: Container(
                   height: 250,
                   decoration: const BoxDecoration(color: Colors.white),
+                  child: Image.asset(
+                    photo1,
+                    height: 300,
+                  ),
                 ),
               ),
               Container(
-                child: const Text(
-                  "비숑프리제",
-                  style: TextStyle(
+                child: Text(
+                  title,
+                  style: const TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: Text(
-                  "분석결과분석결과분석결과분석결과 분석결과분석결과분석결과분석결과분석결과 분석결과분석결과분석결과분석결과분석결과 분석결과분석결과분석결과분석결과분석결과분석결과",
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                  sub,
+                  style: const TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
               const SizedBox(height: 40),
@@ -101,23 +136,23 @@ class ResultScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              ScoreWidget(5),
+                              ScoreWidget(widget.sm.happiness),
                               const SizedBox(
                                 height: 20,
                               ),
-                              ScoreWidget(2),
+                              ScoreWidget(widget.sm.curiosity),
                               const SizedBox(
                                 height: 20,
                               ),
-                              ScoreWidget(4),
+                              ScoreWidget(widget.sm.anger),
                               const SizedBox(
                                 height: 20,
                               ),
-                              ScoreWidget(1),
+                              ScoreWidget(widget.sm.anxiety),
                               const SizedBox(
                                 height: 20,
                               ),
-                              ScoreWidget(1)
+                              ScoreWidget(widget.sm.vigilance)
                             ],
                           ),
                         ],

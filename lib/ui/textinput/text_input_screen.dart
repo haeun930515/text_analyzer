@@ -50,13 +50,13 @@ class TextInputScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () async {
                           //이미지 피커 function to do
-                          await TextFromImageProvider().getImageFromGallery();
-                          print(textFromImageProvider.getTxtInput);
+                          var str = await TextFromImageProvider()
+                              .getImageFromGallery();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => TextAnalyzingScreen(
-                                        input: textFromImageProvider.inputTxt,
+                                        input: str,
                                       )));
                         },
                         style: ElevatedButton.styleFrom(
