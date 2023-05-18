@@ -48,4 +48,19 @@ flutter:
     - assets/images/resultDogs/poodle2.png
     - assets/images/resultDogs/ristriber.png
     - assets/images/resultDogs/york2.png
+    - assets/images/utils/graphic_kakao.png
+    - assets/images/utils/graphic_instagram.png
+    - assets/images/utils/graphic_facebook.png
+    - assets/images/resultDogsWithBody/bis.png
+    - assets/images/resultDogsWithBody/chew.png
+    - assets/images/resultDogsWithBody/chi.png
+    - assets/images/resultDogsWithBody/col.png
+    - assets/images/resultDogsWithBody/dalma.png
+    - assets/images/resultDogsWithBody/houn.png
+    - assets/images/resultDogsWithBody/lit.png
+    - assets/images/resultDogsWithBody/mal.png
+    - assets/images/resultDogsWithBody/pome.png
+    - assets/images/resultDogsWithBody/pood.png
+    - assets/images/resultDogsWithBody/shap.png
+    - assets/images/resultDogsWithBody/york.png
     - .env

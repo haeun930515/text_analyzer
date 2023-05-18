@@ -61,24 +61,16 @@ class FacebookShareButton extends StatelessWidget {
         Provider.of<FacebookShareProvider>(context, listen: false);
     Capture capture = Capture();
     return InkWell(
-      onTap: () async {
-        String imagePath = await capture.capture(globalKey);
-        await facebookProvider.facebookShare(imagePath);
-      },
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.blue, // 버튼의 배경색 설정
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Text(
-          text,
-          style: const TextStyle(
-            color: Colors.white, // 버튼의 텍스트 색상 설정
-            fontWeight: FontWeight.bold,
+        onTap: () async {
+          String imagePath = await capture.capture(globalKey);
+          await facebookProvider.facebookShare(imagePath);
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Image.asset(
+            "assets/images/utils/graphic_facebook.png",
+            height: 70,
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

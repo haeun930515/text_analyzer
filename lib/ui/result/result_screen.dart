@@ -18,9 +18,11 @@ class ResultScreen extends StatefulWidget {
 
 class _ResultScreenState extends State<ResultScreen> {
   late ResultProvider resultProvider;
+
   @override
-  void didChangeDependencies() {
-    resultProvider = Provider.of<ResultProvider>(context);
+  void initState() {
+    super.initState();
+    resultProvider = Provider.of<ResultProvider>(context, listen: false);
     WidgetsBinding.instance
         .addPostFrameCallback((_) => {resultProvider.getResult(widget.sm)});
   }
@@ -45,21 +47,28 @@ class _ResultScreenState extends State<ResultScreen> {
                     Consumer<ResultProvider>(builder: (context, value, child) {
                   return Column(
                     children: [
-                      Row(
-                        children: [
-                          SizedBox(
-                              height: 150,
-                              child: Image.asset(
-                                value.photo1,
-                                height: 300,
-                              )),
-                          SizedBox(
-                              height: 150,
-                              child: Image.asset(
-                                value.photo2,
-                                height: 300,
-                              )),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                                height: 130,
+                                child: Image.asset(
+                                  value.photo1,
+                                  height: 300,
+                                )),
+                            SizedBox(
+                                height: 130,
+                                child: Image.asset(
+                                  value.photo2,
+                                  height: 300,
+                                )),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 40,
                       ),
                       Container(
                         child: Text(
@@ -160,28 +169,39 @@ class _ResultScreenState extends State<ResultScreen> {
                           ),
                         ],
                       ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                        child: const Text(
+                          "우리의 티키타캉 공유하기",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          //카카오 공유하기 버튼
+                          KakaoShareButton(
+                            text: '카카오',
+                            globalKey: globalKey,
+                          ),
+                          // 인스타 공유하기 버튼
+                          InstarShareButton(
+                            text: '인스타',
+                            globalKey: globalKey,
+                          ),
+                          // 페이스북 공유하기 버튼
+                          FacebookShareButton(
+                            text: '페이스북',
+                            globalKey: globalKey,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
-              ),
-              Row(
-                children: [
-                  //카카오 공유하기 버튼
-                  KakaoShareButton(
-                    text: '카카오로 공유하기',
-                    globalKey: globalKey,
-                  ),
-                  // 인스타 공유하기 버튼
-                  InstarShareButton(
-                    text: '인스타로 공유하기',
-                    globalKey: globalKey,
-                  ),
-                  // 페이스북 공유하기 버튼
-                  FacebookShareButton(
-                    text: '페이스북으로 공유하기',
-                    globalKey: globalKey,
-                  ),
-                ],
               ),
             ]),
           ),
