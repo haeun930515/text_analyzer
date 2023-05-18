@@ -184,17 +184,14 @@ class _ResultScreenState extends State<ResultScreen> {
                         children: [
                           //카카오 공유하기 버튼
                           KakaoShareButton(
-                            text: '카카오',
                             globalKey: globalKey,
                           ),
                           // 인스타 공유하기 버튼
                           InstarShareButton(
-                            text: '인스타',
                             globalKey: globalKey,
                           ),
                           // 페이스북 공유하기 버튼
                           FacebookShareButton(
-                            text: '페이스북',
                             globalKey: globalKey,
                           ),
                         ],

@@ -14,21 +14,25 @@ class Capture {
     print("START CAPTURE");
     Completer<String> completer = Completer<String>();
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      var renderObject = globalKey.currentContext?.findRenderObject();
-      if (renderObject is RenderRepaintBoundary) {
-        var boundary = renderObject;
-        ui.Image image = await boundary.toImage();
-        final directory = (await getApplicationDocumentsDirectory()).path;
-        ByteData? byteData =
-            await image.toByteData(format: ui.ImageByteFormat.png);
-        Uint8List? pngBytes = byteData?.buffer.asUint8List();
-        print(pngBytes);
-        File imgFile = File('$directory/screenshot.png');
-        imgFile.writeAsBytes(pngBytes!);
-        print("FINISH CAPTURE ${imgFile.path}");
-        completer.complete(imgFile.path);
-      } else {
-        completer.completeError("Could not capture the image.");
+      try {
+        var renderObject = globalKey.currentContext?.findRenderObject();
+        if (renderObject is RenderRepaintBoundary) {
+          var boundary = renderObject;
+          ui.Image image = await boundary.toImage();
+          final directory = await getTemporaryDirectory();
+          String imagePath = '${directory.path}/screenshot.png';
+          File imgFile = File(imagePath);
+          Uint8List? pngBytes = await image
+              .toByteData(format: ui.ImageByteFormat.png)
+              .then((byteData) => byteData?.buffer.asUint8List());
+          await imgFile.writeAsBytes(pngBytes!);
+          print("FINISH CAPTURE $imagePath");
+          completer.complete(imagePath);
+        } else {
+          completer.completeError("Could not capture the image.");
+        }
+      } catch (error) {
+        completer.completeError("Error capturing the image: $error");
       }
     });
     return completer.future;
