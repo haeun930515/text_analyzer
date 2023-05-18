@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/facebook_provider.dart';
 import 'package:text_analyzer/provider/instar_provider.dart';
@@ -14,7 +13,6 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // 키 초기화
   await dotenv.load();
 
@@ -27,7 +25,6 @@ void main() async {
   // 카카오 로그인 해시 키 받는 함수
   hasykey();
 
-  FlutterNativeSplash.remove(); // 초기화가 끝나는 시점에 삽입
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<OpenAIProvider>(create: (_) => OpenAIProvider()),
     ChangeNotifierProvider<TextFromImageProvider>(

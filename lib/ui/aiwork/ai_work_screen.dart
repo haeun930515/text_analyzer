@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
 import 'package:text_analyzer/ui/result/result_screen.dart';
 
-import '../../model/score_model.dart';
-
 class AiWorkScreen extends StatefulWidget {
   const AiWorkScreen({super.key, required this.input});
 
@@ -14,25 +12,16 @@ class AiWorkScreen extends StatefulWidget {
   State<AiWorkScreen> createState() => _AiWorkScreenState();
 }
 
-//ScoreModel score = await openAIProvider
-// .getText(textEditingController.text);
 class _AiWorkScreenState extends State<AiWorkScreen> {
-  late ScoreModel score;
+  late OpenAIProvider openAIProvider;
   @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-
-  Future<void> fetchData() async {
-    score = await OpenAIProvider().getText(widget.input);
+  void didChangeDependencies() {
+    openAIProvider = Provider.of<OpenAIProvider>(context);
+    openAIProvider.getText(widget.input);
   }
 
   @override
   Widget build(BuildContext context) {
-    OpenAIProvider openAIProvider =
-        Provider.of<OpenAIProvider>(context, listen: true);
-    openAIProvider.getText(widget.input);
     return Scaffold(
       backgroundColor: const Color(0xFF2062f3),
       body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -81,7 +70,7 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ResultScreen(
-                                        sm: score,
+                                        sm: provider.scoreModel,
                                       )));
                         },
                         child: const Center(

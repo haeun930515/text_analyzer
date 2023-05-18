@@ -17,30 +17,17 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
+  late ResultProvider resultProvider;
   @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-
-  Future<void> fetchData() async {
-    await ResultProvider().getResult(widget.sm);
+  void didChangeDependencies() {
+    resultProvider = Provider.of<ResultProvider>(context);
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => {resultProvider.getResult(widget.sm)});
   }
 
   @override
   Widget build(BuildContext context) {
     var globalKey = GlobalKey();
-    ResultProvider resultProvider =
-        Provider.of<ResultProvider>(context, listen: true);
-    resultProvider.getResult(widget.sm);
-    var photo1 = resultProvider.photo1;
-    var photo2 = resultProvider.photo2;
-    var title = resultProvider.title;
-    var sub = resultProvider.sub;
-    print(photo1);
-    print(photo2);
-    print(title);
-    print(sub);
     return RepaintBoundary(
       key: globalKey,
       child: Scaffold(
@@ -54,30 +41,46 @@ class _ResultScreenState extends State<ResultScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                child: Container(
-                  height: 250,
-                  decoration: const BoxDecoration(color: Colors.white),
-                  child: Image.asset(
-                    photo1,
-                    height: 300,
-                  ),
-                ),
-              ),
-              Container(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: Text(
-                  sub,
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
-                ),
+                child:
+                    Consumer<ResultProvider>(builder: (context, value, child) {
+                  return Column(
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                              height: 150,
+                              child: Image.asset(
+                                value.photo1,
+                                height: 300,
+                              )),
+                          SizedBox(
+                              height: 150,
+                              child: Image.asset(
+                                value.photo2,
+                                height: 300,
+                              )),
+                        ],
+                      ),
+                      Container(
+                        child: Text(
+                          value.title,
+                          style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                        child: Text(
+                          value.sub,
+                          style: const TextStyle(
+                              fontSize: 16, color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  );
+                }),
               ),
               const SizedBox(height: 40),
               Container(

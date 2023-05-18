@@ -9,6 +9,7 @@ import '../model/text_model.dart';
 class OpenAIProvider with ChangeNotifier {
   String? _answer;
   bool finished = false;
+  late ScoreModel scoreModel;
 
   bool get isFinished => finished;
 
@@ -19,22 +20,27 @@ class OpenAIProvider with ChangeNotifier {
       'Content-Type': 'application/json',
       'Authorization': dotenv.env['CHAT_API_KEY']!,
     };
-    final response = await http.post(url, body: textBody, headers: headers);
-    if (response.statusCode == 200) {
-      // final ss = jsonDecode(utf8.decode(response.bodyBytes));
-      Map<String, dynamic> md = jsonDecode(utf8.decode(response.bodyBytes));
-      // print(md['choices'][0]['message']['content']);
-      ResultModel rm = ResultModel.fromJson(md);
-      var rawData = rm.choices[0].message.content;
-      var score = ScoreModel.fromJson(getScore(rawData));
+    if (!finished) {
+      final response = await http.post(url, body: textBody, headers: headers);
 
-      _answer = answer;
-      finished = true;
-      notifyListeners();
-      return score;
-    } else {
-      _answer = '응답을 불러오지 못했습니다. 다시 시도해주세요.';
-      notifyListeners();
+      if (response.statusCode == 200) {
+        // final ss = jsonDecode(utf8.decode(response.bodyBytes));
+        Map<String, dynamic> md = jsonDecode(utf8.decode(response.bodyBytes));
+        // print(md['choices'][0]['message']['content']);
+        ResultModel rm = ResultModel.fromJson(md);
+        var rawData = rm.choices[0].message.content;
+        var score = ScoreModel.fromJson(getScore(rawData));
+
+        _answer = answer;
+        scoreModel = score;
+        finished = true;
+        print(rm.usage.totalTokens);
+        notifyListeners();
+      } else {
+        _answer = '응답을 불러오지 못했습니다. 다시 시도해주세요.';
+        print("API CALL FAILED");
+        notifyListeners();
+      }
     }
   }
 

@@ -48,15 +48,9 @@ class ResultProvider with ChangeNotifier {
     } else if (4 <= sc.anxiety && sc.anxiety <= 5) {
       anxNum = 2;
     }
-    print(happyNum);
-    print(curNum);
-    print(vigNum);
-    print(angerNum);
-    print(anxNum);
   }
 
   getResult(ScoreModel scoreModel) {
-    print(scoreModel);
     getNum(scoreModel);
     if (happyNum == 1 &&
         curNum == 1 &&
@@ -305,7 +299,7 @@ class ResultProvider with ChangeNotifier {
       //21
       //리트리버, 보더콜리 - 경계를 조금만 풀면 친한 친구가 될거에요
 
-      _photo1 = "assets/images/resultDogs/ristriber2.png";
+      _photo1 = "assets/images/resultDogs/ristriber.png";
       _photo2 = "assets/images/resultDogs/coly2.png";
       _title = "리트리버 vs 보더콜리";
       _sub = "경계를 조금만 풀면 친한 친구가 될거에요.";
@@ -317,7 +311,7 @@ class ResultProvider with ChangeNotifier {
       //22
       //리트리버, 하운드 - 경계를 조금만 풀면 친한 친구가 될거에요
 
-      _photo1 = "assets/images/resultDogs/ristriber2.png";
+      _photo1 = "assets/images/resultDogs/ristriber.png";
       _photo2 = "assets/images/resultDogs/hound2.png";
       _title = "리트리버 vs 하운드";
       _sub = "경계를 조금만 풀면 친한 친구가 될거에요.";
@@ -354,7 +348,7 @@ class ResultProvider with ChangeNotifier {
       //시추, 리트리버 - 이미 서로 좋은 친구가 아닐까요?
 
       _photo1 = "assets/images/resultDogs/chew2.png";
-      _photo2 = "assets/images/resultDogs/ristriber2.png";
+      _photo2 = "assets/images/resultDogs/ristriber.png";
       _title = "시츄 vs 리트리버";
       _sub = "이미 서로 좋은 친구가 아닐까요?";
     } else if (happyNum == 2 &&
