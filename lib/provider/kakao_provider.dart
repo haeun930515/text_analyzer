@@ -64,7 +64,7 @@ class KakaoShareButton extends StatelessWidget {
           await kakaoProvider.kakaoShare(context, imagePath);
         },
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: Image.asset(
             "assets/images/utils/graphic_kakao.png",
             height: 70,

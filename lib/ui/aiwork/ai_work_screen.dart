@@ -25,7 +25,7 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF2062f3),
       body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        Container(height: 180),
+        Container(height: 140),
         const Text(
           "티키",
           style: TextStyle(

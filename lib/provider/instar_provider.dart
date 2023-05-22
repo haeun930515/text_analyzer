@@ -61,13 +61,13 @@ class InstarShareButton extends StatelessWidget {
     InstarShareProvider instarProvider =
         Provider.of<InstarShareProvider>(context, listen: false);
     Capture capture = Capture();
-    return InkWell(
+    return GestureDetector(
         onTap: () async {
           String imagePath = await capture.capture(globalKey);
           await instarProvider.instarShare(imagePath);
         },
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: Image.asset(
             "assets/images/utils/graphic_instagram.png",
             height: 70,

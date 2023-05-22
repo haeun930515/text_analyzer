@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/text_from_image_provider.dart';
+import 'package:text_analyzer/ui/aiwork/ai_work_screen.dart';
 import 'package:text_analyzer/ui/dialog/help_dialog.dart';
-import 'package:text_analyzer/ui/textanalyzing/text_analyzing_screen.dart';
 
 class TextInputScreen extends StatelessWidget {
   const TextInputScreen({super.key});
@@ -18,14 +18,14 @@ class TextInputScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 170,
+              height: 140,
             ),
             Container(
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "나의",
+                      "우리의",
                       style:
                           TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
@@ -43,10 +43,10 @@ class TextInputScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 80,
+                      height: 70,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 80),
+                      padding: const EdgeInsets.symmetric(horizontal: 60),
                       child: ElevatedButton(
                         onPressed: () async {
                           //이미지 피커 function to do
@@ -55,7 +55,7 @@ class TextInputScreen extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => TextAnalyzingScreen(
+                                  builder: (context) => AiWorkScreen(
                                         input: str,
                                       )));
                         },
@@ -66,7 +66,7 @@ class TextInputScreen extends StatelessWidget {
                         child: Column(
                           children: const [
                             SizedBox(
-                              height: 120,
+                              height: 90,
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -95,7 +95,7 @@ class TextInputScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 80),
+                        const SizedBox(height: 70),
                         Container(),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(

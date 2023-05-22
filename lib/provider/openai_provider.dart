@@ -35,6 +35,7 @@ class OpenAIProvider with ChangeNotifier {
         scoreModel = score;
         finished = true;
         print(rm.usage.totalTokens);
+        print(rm.choices[0].message.content);
         notifyListeners();
       } else {
         _answer = '응답을 불러오지 못했습니다. 다시 시도해주세요.';

@@ -17,7 +17,7 @@ class StartScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(
-                height: 100,
+                height: 30,
               ),
               const Center(
                 child: Text(

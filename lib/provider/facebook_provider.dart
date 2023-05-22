@@ -60,13 +60,13 @@ class FacebookShareButton extends StatelessWidget {
     FacebookShareProvider facebookProvider =
         Provider.of<FacebookShareProvider>(context, listen: false);
     Capture capture = Capture();
-    return InkWell(
+    return GestureDetector(
         onTap: () async {
           String imagePath = await capture.capture(globalKey);
           await facebookProvider.facebookShare(imagePath);
         },
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: Image.asset(
             "assets/images/utils/graphic_facebook.png",
             height: 70,
