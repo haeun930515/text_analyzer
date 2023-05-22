@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:text_analyzer/model/capture_model.dart';
 
 class KakaoShareProvider extends ChangeNotifier {
-  kakaoShare(BuildContext context, String imagePath) async {
+  kakaoShare(String imagePath) async {
+    print(imagePath);
     FeedTemplate feedTemplate = FeedTemplate(
       content: Content(
         title: '우리의 대화 분석 결과 공유',
@@ -13,8 +14,8 @@ class KakaoShareProvider extends ChangeNotifier {
         link: Link(
           androidExecutionParams: <String, String>{'key': 'value'},
           iosExecutionParams: <String, String>{'key': 'value'},
-          mobileWebUrl: Uri.parse('https://example.com'),
-          webUrl: Uri.parse('https://example.com'),
+          // mobileWebUrl: Uri.parse('https://example.com'),
+          // webUrl: Uri.parse('https://example.com'),
         ),
       ),
     );
@@ -43,14 +44,12 @@ class KakaoShareProvider extends ChangeNotifier {
 }
 
 class KakaoShareButton extends StatelessWidget {
-  final String text;
   GlobalKey globalKey;
 
   KakaoShareButton({
-    Key? key,
-    required this.text,
+    super.key,
     required this.globalKey,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +57,10 @@ class KakaoShareButton extends StatelessWidget {
         Provider.of<KakaoShareProvider>(context, listen: false);
     Capture capture = Capture();
 
-    return GestureDetector(
+    return InkWell(
         onTap: () async {
           String imagePath = await capture.capture(globalKey);
-          await kakaoProvider.kakaoShare(context, imagePath);
+          await kakaoProvider.kakaoShare(imagePath);
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),

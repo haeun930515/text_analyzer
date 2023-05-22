@@ -47,12 +47,10 @@ class InstarShareProvider extends ChangeNotifier {
 }
 
 class InstarShareButton extends StatelessWidget {
-  final String text;
   GlobalKey globalKey;
 
   InstarShareButton({
     super.key,
-    required this.text,
     required this.globalKey,
   });
 

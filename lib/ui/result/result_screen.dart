@@ -195,56 +195,39 @@ class _ResultScreenState extends State<ResultScreen> {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            //공유 부분
-            Container(
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Container(
-                    child: const Text(
-                      "우리의 티키타캉 공유하기",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      //카카오 공유하기 버튼
-                      TextButton(
-                        onPressed: () async {
-                          var imagePath = await _capture();
-                          KakaoShareProvider kakaoShareProvider =
-                              Provider.of<KakaoShareProvider>(context,
-                                  listen: false);
-                          kakaoShareProvider.kakaoShare(context, imagePath);
-                        },
-                        child: const Text("카카오"),
+                      Container(
+                        child: const Text(
+                          "우리의 티키타캉 공유하기",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      // 인스타 공유하기 버튼
-                      InstarShareButton(
-                        text: '인스타',
-                        globalKey: globalKey,
-                      ),
-                      // 페이스북 공유하기 버튼
-                      FacebookShareButton(
-                        text: '페이스북',
-                        globalKey: globalKey,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          //카카오 공유하기 버튼
+                          KakaoShareButton(
+                            globalKey: globalKey,
+                          ),
+                          // 인스타 공유하기 버튼
+                          InstarShareButton(
+                            globalKey: globalKey,
+                          ),
+                          // 페이스북 공유하기 버튼
+                          FacebookShareButton(
+                            globalKey: globalKey,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ]),
+            ]),
+          ),
         ),
       ),
-    );
+    )
   }
 
   _capture() async {

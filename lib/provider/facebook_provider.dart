@@ -47,11 +47,9 @@ class FacebookShareProvider extends ChangeNotifier {
 }
 
 class FacebookShareButton extends StatelessWidget {
-  final String text;
   GlobalKey globalKey;
   FacebookShareButton({
     super.key,
-    required this.text,
     required this.globalKey,
   });
 
