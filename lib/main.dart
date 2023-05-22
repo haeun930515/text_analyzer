@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
-import 'package:text_analyzer/provider/facebook_provider.dart';
-import 'package:text_analyzer/provider/instar_provider.dart';
-import 'package:text_analyzer/provider/kakao_provider.dart';
+import 'package:text_analyzer/provider/share_provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
 import 'package:text_analyzer/provider/result_provider.dart';
 import 'package:text_analyzer/provider/text_from_image_provider.dart';
@@ -29,12 +27,8 @@ void main() async {
     ChangeNotifierProvider<OpenAIProvider>(create: (_) => OpenAIProvider()),
     ChangeNotifierProvider<TextFromImageProvider>(
         create: (_) => TextFromImageProvider()),
-    ChangeNotifierProvider<KakaoShareProvider>(
-        create: (_) => KakaoShareProvider()),
-    ChangeNotifierProvider<InstarShareProvider>(
-        create: (_) => InstarShareProvider()),
-    ChangeNotifierProvider<FacebookShareProvider>(
-        create: (_) => FacebookShareProvider()),
+    ChangeNotifierProvider<ImageShareProvider>(
+        create: (_) => ImageShareProvider()),
     ChangeNotifierProvider<ResultProvider>(create: (_) => ResultProvider()),
   ], child: const MainApp()));
 }

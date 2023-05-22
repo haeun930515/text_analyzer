@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/model/score_model.dart';
-import 'package:text_analyzer/provider/facebook_provider.dart';
-import 'package:text_analyzer/provider/instar_provider.dart';
-import 'package:text_analyzer/provider/kakao_provider.dart';
+import 'package:text_analyzer/provider/share_provider.dart';
 import 'package:text_analyzer/provider/result_provider.dart';
 import 'package:text_analyzer/ui/widgets/score_widget.dart';
 
@@ -182,16 +180,8 @@ class _ResultScreenState extends State<ResultScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          //카카오 공유하기 버튼
-                          KakaoShareButton(
-                            globalKey: globalKey,
-                          ),
-                          // 인스타 공유하기 버튼
-                          InstarShareButton(
-                            globalKey: globalKey,
-                          ),
-                          // 페이스북 공유하기 버튼
-                          FacebookShareButton(
+                          //공유하기 버튼
+                          ImageShareButton(
                             globalKey: globalKey,
                           ),
                         ],

@@ -1,5 +1,7 @@
 PODS:
   - Flutter (1.0.0)
+  - flutter_share (0.0.1):
+    - Flutter
   - google_mlkit_barcode_scanning (0.6.0):
     - Flutter
     - google_mlkit_commons
@@ -260,6 +262,7 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_share (from `.symlinks/plugins/flutter_share/ios`)
   - google_mlkit_barcode_scanning (from `.symlinks/plugins/google_mlkit_barcode_scanning/ios`)
   - google_mlkit_commons (from `.symlinks/plugins/google_mlkit_commons/ios`)
   - google_mlkit_digital_ink_recognition (from `.symlinks/plugins/google_mlkit_digital_ink_recognition/ios`)
@@ -324,6 +327,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_share:
+    :path: ".symlinks/plugins/flutter_share/ios"
   google_mlkit_barcode_scanning:
     :path: ".symlinks/plugins/google_mlkit_barcode_scanning/ios"
   google_mlkit_commons:
@@ -365,6 +370,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_share: 4be0208963c60b537e6255ed2ce1faae61cd9ac2
   google_mlkit_barcode_scanning: 9f397872c1e109f95b014de14afbca22dc05c854
   google_mlkit_commons: a4f893c1b9708fc697b2194728013a1ed0f50b6b
   google_mlkit_digital_ink_recognition: fb77071ef17c09db60a0f4b11e275b467473273d
