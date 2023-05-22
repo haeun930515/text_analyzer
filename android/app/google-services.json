@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "715267397910",
+    "project_id": "tktk-19e10",
+    "storage_bucket": "tktk-19e10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715267397910:android:b234242b6619b21ca81837",
+        "android_client_info": {
+          "package_name": "com.example.text_analyzer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715267397910-i789d713epqvuui8e7j4lcvb7c7mddvu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_T8V-SUujgbhtuK7YVuqWxKWOm1_-tyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715267397910-i789d713epqvuui8e7j4lcvb7c7mddvu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "715267397910-lgoe58pn0ojoasc51tsf0jf8vaglcfov.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.textAnalyzer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
