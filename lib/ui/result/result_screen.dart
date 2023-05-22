@@ -42,192 +42,190 @@ class _ResultScreenState extends State<ResultScreen> {
       body: SingleChildScrollView(
         //파란색 배경
         child: Container(
-          decoration: const BoxDecoration(color: Color(0xFF2062f3)),
-          child: Column(children: [
-            const SizedBox(
-              height: 120,
-            ),
-            RepaintBoundary(
-              key: globalKey,
-              child: Column(
-                children: [
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                      child: Consumer<ResultProvider>(
-                          builder: (context, value, child) {
-                        return Column(
-                          children: [
-                            //사진
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 30.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                      height: 130,
-                                      child: Image.asset(
-                                        value.photo1,
-                                        height: 300,
-                                      )),
-                                  SizedBox(
-                                      height: 130,
-                                      child: Image.asset(
-                                        value.photo2,
-                                        height: 300,
-                                      )),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 40,
-                            ),
-                            //ㅇㅇ vs ㅇㅇ
-                            Container(
-                              child: Text(
-                                value.title,
-                                style: const TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                            ),
-                            //설명
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 30.0),
-                              child: Text(
-                                value.sub,
-                                style: const TextStyle(
-                                    fontSize: 16, color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        );
-                      }),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-                  Container(
-                    height: 280,
-                    decoration: const BoxDecoration(color: Colors.white),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 40),
-                          //점수 파트
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+            decoration: const BoxDecoration(color: Color(0xFF2062f3)),
+            child: Column(children: [
+              const SizedBox(
+                height: 120,
+              ),
+              RepaintBoundary(
+                key: globalKey,
+                child: Column(
+                  children: [
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                        child: Consumer<ResultProvider>(
+                            builder: (context, value, child) {
+                          return Column(
                             children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "기쁨",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    "호기심",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    "경계",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    "분노",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    "불안",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 19),
-                                  )
-                                ],
+                              //사진
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 30.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                        height: 130,
+                                        child: Image.asset(
+                                          value.photo1,
+                                          height: 300,
+                                        )),
+                                    SizedBox(
+                                        height: 130,
+                                        child: Image.asset(
+                                          value.photo2,
+                                          height: 300,
+                                        )),
+                                  ],
+                                ),
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              //ㅇㅇ vs ㅇㅇ
+                              Container(
+                                child: Text(
+                                  value.title,
+                                  style: const TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ),
+                              //설명
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 30.0),
+                                child: Text(
+                                  value.sub,
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          );
+                        }),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    Container(
+                        height: 280,
+                        decoration: const BoxDecoration(color: Colors.white),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 40),
+                              //점수 파트
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  ScoreWidget(widget.sm.happiness),
-                                  const SizedBox(
-                                    height: 20,
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: const [
+                                      Text(
+                                        "기쁨",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 19),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        "호기심",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 19),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        "경계",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 19),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        "분노",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 19),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        "불안",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 19),
+                                      )
+                                    ],
                                   ),
-                                  ScoreWidget(widget.sm.curiosity),
-                                  const SizedBox(
-                                    height: 20,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      ScoreWidget(widget.sm.happiness),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      ScoreWidget(widget.sm.curiosity),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      ScoreWidget(widget.sm.anger),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      ScoreWidget(widget.sm.anxiety),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      ScoreWidget(widget.sm.vigilance)
+                                    ],
                                   ),
-                                  ScoreWidget(widget.sm.anger),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  ScoreWidget(widget.sm.anxiety),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  ScoreWidget(widget.sm.vigilance)
                                 ],
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                      Container(
-                        child: const Text(
-                          "우리의 티키타캉 공유하기",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          //카카오 공유하기 버튼
-                          KakaoShareButton(
-                            globalKey: globalKey,
-                          ),
-                          // 인스타 공유하기 버튼
-                          InstarShareButton(
-                            globalKey: globalKey,
-                          ),
-                          // 페이스북 공유하기 버튼
-                          FacebookShareButton(
-                            globalKey: globalKey,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        )),
+                  ],
                 ),
               ),
-            ]),
-          ),
-        ),
+              Container(
+                child: const Text(
+                  "우리의 티키타캉 공유하기",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //카카오 공유하기 버튼
+                  KakaoShareButton(
+                    globalKey: globalKey,
+                  ),
+                  // 인스타 공유하기 버튼
+                  InstarShareButton(
+                    globalKey: globalKey,
+                  ),
+                  // 페이스북 공유하기 버튼
+                  FacebookShareButton(
+                    globalKey: globalKey,
+                  ),
+                ],
+              ),
+            ])),
       ),
-    )
+    );
   }
 
   _capture() async {
