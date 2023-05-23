@@ -46,6 +46,8 @@ void main() async {
         create: (_) => InstarShareProvider()),
     ChangeNotifierProvider<FacebookShareProvider>(
         create: (_) => FacebookShareProvider()),
+    ChangeNotifierProvider<ImageShareProvider>(
+        create: (_) => ImageShareProvider()),
     ChangeNotifierProvider<ResultProvider>(create: (_) => ResultProvider()),
   ], child: const MainApp()));
 }

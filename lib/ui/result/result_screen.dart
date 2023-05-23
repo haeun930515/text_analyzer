@@ -11,6 +11,7 @@ import 'package:text_analyzer/provider/facebook_provider.dart';
 import 'package:text_analyzer/provider/insta_provider.dart';
 import 'package:text_analyzer/provider/kakao_provider.dart';
 import 'package:text_analyzer/provider/result_provider.dart';
+import 'package:text_analyzer/provider/share_provider.dart';
 import 'package:text_analyzer/ui/widgets/score_widget.dart';
 
 import 'dart:io';
@@ -87,7 +88,7 @@ class _ResultScreenState extends State<ResultScreen> {
     super.initState();
     resultProvider = Provider.of<ResultProvider>(context, listen: false);
     WidgetsBinding.instance
-        .addPostFrameCallback((_) => {resultProvider.getResult(widget.sm)});
+        .addPostFrameCallback((_) => resultProvider.getResult(widget.sm));
   }
 
   final GlobalKey genKey = GlobalKey();
@@ -186,9 +187,9 @@ class _ResultScreenState extends State<ResultScreen> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
+                        const Column(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
                               "기쁨",
                               style: TextStyle(
@@ -313,6 +314,9 @@ class _ResultScreenState extends State<ResultScreen> {
                           text: '페이스북',
                           globalKey: globalKey,
                         ),
+                      ),
+                      ImageShareButton(
+                        globalKey: globalKey,
                       ),
                     ],
                   ),
