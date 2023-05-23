@@ -96,6 +96,8 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget build(BuildContext context) {
     KakaoShareProvider kakaoProvider =
         Provider.of<KakaoShareProvider>(context, listen: false);
+    ImageShareProvider imageShareProvider =
+        Provider.of<ImageShareProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -315,8 +317,14 @@ class _ResultScreenState extends State<ResultScreen> {
                           globalKey: globalKey,
                         ),
                       ),
-                      ImageShareButton(
-                        globalKey: globalKey,
+                      GestureDetector(
+                        onTap: () async {
+                          imageUrl = await capture(globalKey);
+                          imageShareProvider.imageShare(imagePath);
+                        },
+                        child: ImageShareButton(
+                          globalKey: globalKey,
+                        ),
                       ),
                     ],
                   ),

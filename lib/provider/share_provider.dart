@@ -21,14 +21,9 @@ class ImageShareButton extends StatelessWidget {
     ImageShareProvider imageShareProvider =
         Provider.of<ImageShareProvider>(context, listen: false);
     Capture capture = Capture();
-    return InkWell(
-        onTap: () async {
-          String imagePath = await capture.capture(globalKey);
-          await imageShareProvider.imageShare(imagePath);
-        },
-        child: const Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Icon(Icons.share),
-        ));
+    return const Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Icon(Icons.share),
+    );
   }
 }
