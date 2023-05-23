@@ -86,8 +86,8 @@ class ResultProvider with ChangeNotifier {
 
       _photo1 = picChew;
       _photo2 = picBishon;
-      _title = "시츄 vs 비숑";
-      _sub = "불안해 할 필요 없어요.";
+      _title = "보더콜리 / 치와와";
+      _sub = "보더콜리는 활동적이고 치와와는 작은 체구를 가지고 있으므로, 보더콜리가 치와와를 쫓아갈 가능성이 있습니다.";
     } else if (happyNum == 1 &&
         curNum == 1 &&
         vigNum == 1 &&
@@ -98,8 +98,9 @@ class ResultProvider with ChangeNotifier {
 
       _photo1 = picBishon;
       _photo2 = picChiwawa;
-      _title = "비숑프리제 vs 치와와";
-      _sub = "항상 조금씩 화나 있어요.";
+      _title = "비숑프리제 vs 달마시안";
+      _sub =
+          "달마시안의 활동성과 경계심은 비숑을 겁나게 할 수 있고, 비숑의 작은 크기는 달마시안이 너무 격렬하게 다가갈 수 있는 가능성이 있습니다";
     } else if (happyNum == 1 &&
         curNum == 1 &&
         vigNum == 1 &&
@@ -264,10 +265,11 @@ class ResultProvider with ChangeNotifier {
       //17
       //몰티즈, 포메라니안 - 너무 좋기만 한데요?
 
-      _photo1 = picMal;
-      _photo2 = picPome;
-      _title = "말티즈 vs 포메라니안";
-      _sub = "너무 좋아해요.";
+      _photo1 = picYork;
+      _photo2 = picPood;
+      _title = "요크셔테리어  -  푸들";
+      _sub =
+          "일반적으로 말하면 서로 어울릴 수 있습니다. 작은 크기와 비슷한 활동 수준을 가지고 있기 때문에 서로 놀고 뛰며 재미있게 시간을 보낼 수 있습니다.푸들은 훈련하기 쉬우며, 지능적이므로 요크셔 테리어와 함께 훈련하고 활동하는 것을 즐길 수 있습니다. 함께 트릭을 배우거나 놀이를 즐기며 서로를 자극할 수 있습니다.";
     } else if (happyNum == 2 &&
         curNum == 1 &&
         vigNum == 1 &&

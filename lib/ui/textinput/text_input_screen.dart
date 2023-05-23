@@ -45,52 +45,54 @@ class TextInputScreen extends StatelessWidget {
                     const SizedBox(
                       height: 70,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 60),
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          //이미지 피커 function to do
-                          var str = await TextFromImageProvider()
-                              .getImageFromGallery();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AiWorkScreen(
-                                        input: str,
-                                      )));
-                        },
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF2062f3),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16))),
-                        child: Column(
-                          children: const [
-                            SizedBox(
-                              height: 90,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 30),
-                              child: SizedBox(
-                                height: 50,
-                                width: 100,
-                                child: Icon(
-                                  Icons.textsms,
-                                  size: 50,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () async {
+                            //이미지 피커 function to do
+                            var str = await TextFromImageProvider()
+                                .getImageFromGallery();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AiWorkScreen(
+                                          input: str,
+                                        )));
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF2062f3),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16))),
+                          child: Column(
+                            children: const [
+                              SizedBox(
+                                height: 90,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 30),
+                                child: SizedBox(
+                                  height: 50,
+                                  width: 100,
+                                  child: Icon(
+                                    Icons.textsms,
+                                    size: 50,
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: 30),
-                            Text(
-                              "대화 붙여넣기",
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 100,
-                            )
-                          ],
+                              SizedBox(height: 30),
+                              Text(
+                                "대화 붙여넣기",
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 100,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,

@@ -95,8 +95,6 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget build(BuildContext context) {
     KakaoShareProvider kakaoProvider =
         Provider.of<KakaoShareProvider>(context, listen: false);
-    InstarShareProvider instarProvider =
-        Provider.of<InstarShareProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -117,7 +115,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         return Column(
                           children: [
                             const SizedBox(
-                              height: 100,
+                              height: 140,
                             ),
                             //사진
                             Padding(
