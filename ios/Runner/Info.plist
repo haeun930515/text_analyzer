@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -29,7 +38,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photo Library Access Warning</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-<string>앱에서 캡처한 이미지를 저장하기 위해 사진 라이브러리에 접근합니다.</string>
+	<string>앱에서 캡처한 이미지를 저장하기 위해 사진 라이브러리에 접근합니다.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -48,20 +57,20 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
-<array>
-  <string>kakao0123456789abcdefghijklmn</string>
-  <string>kakaokompassauth</string>
-  <string>kakaomap</string>
-  <string>kakaolink</string>
-  <string>kakaosocial</string>
-  <string>kakaostory</string>
-  <string>storykompassauth</string>
-  <string>storylink</string>
-	<string>instagram-stories</string>
-	<string>facebook-stories</string>
-	<string>facebook</string>
-  <string>instagram</string>
-</array>
+	<array>
+		<string>kakao0123456789abcdefghijklmn</string>
+		<string>kakaokompassauth</string>
+		<string>kakaomap</string>
+		<string>kakaolink</string>
+		<string>kakaosocial</string>
+		<string>kakaostory</string>
+		<string>storykompassauth</string>
+		<string>storylink</string>
+		<string>instagram-stories</string>
+		<string>facebook-stories</string>
+		<string>facebook</string>
+		<string>instagram</string>
+	</array>
 	<key>NSBonjourServices</key>
 	<array>
 		<string>_dartobservatory._tcp</string>
@@ -71,7 +80,7 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>FacebookAppID</key>
-<string>1300785473839184</string>
+	<string>1300785473839184</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 </dict>
