@@ -5,10 +5,7 @@ import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:social_share/social_share.dart';
 import 'package:text_analyzer/model/score_model.dart';
-import 'package:text_analyzer/provider/facebook_provider.dart';
-import 'package:text_analyzer/provider/insta_provider.dart';
 import 'package:text_analyzer/provider/kakao_provider.dart';
 import 'package:text_analyzer/provider/result_provider.dart';
 import 'package:text_analyzer/provider/share_provider.dart';
@@ -19,6 +16,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:text_analyzer/utils/loading_indicator.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.sm});
@@ -54,6 +52,7 @@ class _ResultScreenState extends State<ResultScreen> {
   Future<String> capture(GlobalKey globalKey) async {
     print("START CAPTURE");
     _isLoading = true;
+    LoadingIndicator(context);
     Completer<String> completer = Completer<String>();
     try {
       var renderObject = globalKey.currentContext?.findRenderObject();
@@ -77,7 +76,7 @@ class _ResultScreenState extends State<ResultScreen> {
         print(ref.getDownloadURL());
         completer.complete(imagePath);
         _isLoading = false;
-        print(_isLoading);
+
         return ref.getDownloadURL();
       } else {
         completer.completeError("Could not capture the image.");
@@ -289,70 +288,62 @@ class _ResultScreenState extends State<ResultScreen> {
             color: Colors.white,
             child: Column(
               children: [
-                Container(
-                  child: const Text(
-                    "우리의 티키타캉 공유하기",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     //공유하기 버튼
-                    //카카오 공유하기 버튼
-                    GestureDetector(
-                        onTap: () async {
-                          imageUrl = await capture(globalKey);
-                          kakaoProvider.kakaoShare(context, imageUrl);
-                        },
-                        child: KakaoShareButton(
-                          text: '카카오',
-                          imageUrl: imageUrl,
-                        )),
-                    // 인스타 공유하기 버튼
-                    GestureDetector(
-                      onTap: () async {
-                        imageUrl = await capture(globalKey);
-                        SocialShare.shareInstagramStory(
-                          appId: "1300785473839184",
-                          imagePath: imagePath,
-                        );
-                        // imageUrl = await capture(globalKey);
-                        // instarProvider.instarShare(imageUrl);
-                      },
-                      child: InstarShareButton(
-                        text: '인스타',
-                        globalKey: globalKey,
-                      ),
+
+                    Column(
+                      children: [
+                        Container(
+                          child: const Text(
+                            "우리의 티키타캉 공유하기",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            imageUrl = await capture(globalKey);
+
+                            Navigator.of(context).pop();
+                            imageShareProvider.imageShare(imagePath);
+                          },
+                          child: ImageShareButton(
+                            globalKey: globalKey,
+                          ),
+                        ),
+                      ],
                     ),
-                    // 페이스북 공유하기 버튼
-                    GestureDetector(
-                      onTap: () async {
-                        imageUrl = await capture(globalKey);
-                        SocialShare.shareFacebookStory(
-                          appId: "1300785473839184",
-                          imagePath: imagePath,
-                        );
-                      },
-                      child: FacebookShareButton(
-                        text: '페이스북',
-                        globalKey: globalKey,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () async {
-                        imageUrl = await capture(globalKey);
-                        imageShareProvider.imageShare(imagePath);
-                      },
-                      child: ImageShareButton(
-                        globalKey: globalKey,
-                      ),
-                    ),
+                    Column(
+                      children: [
+                        Container(
+                          child: const Text(
+                            "홈으로 돌아가기",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.popUntil(
+                                context, ModalRoute.withName('/'));
+                          },
+                          child: const Icon(
+                            Icons.home,
+                            size: 30,
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 ),
                 const SizedBox(
                   height: 50,
-                )
+                ),
               ],
             ),
           )
@@ -361,54 +352,14 @@ class _ResultScreenState extends State<ResultScreen> {
       ),
     );
 
-    var bodyProgress = Container(
-      child: Stack(
-        children: <Widget>[
-          body,
-          Container(
-            alignment: AlignmentDirectional.center,
-            decoration: const BoxDecoration(
-              color: Colors.white70,
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.blue[200],
-                  borderRadius: BorderRadius.circular(10.0)),
-              width: 300.0,
-              height: 200.0,
-              alignment: AlignmentDirectional.center,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Center(
-                    child: SizedBox(
-                      height: 50.0,
-                      width: 50.0,
-                      child: CircularProgressIndicator(
-                        value: null,
-                        strokeWidth: 7.0,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 25.0),
-                    child: const Center(
-                      child: Text(
-                        "loading.. wait...",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+    return WillPopScope(
+      onWillPop: () {
+        return Future(() => false);
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: body,
       ),
     );
-
-    return Scaffold(
-        backgroundColor: Colors.white, body: _isLoading ? bodyProgress : body);
   }
 }

@@ -1,7 +1,7 @@
 /// ChatAISendModel - AI 채팅 API 전달값
 class TextSendModel {
   final String text;
-  final String model = "gpt-4";
+  final String model = "gpt-3.5-turbo";
 
   TextSendModel(this.text);
 

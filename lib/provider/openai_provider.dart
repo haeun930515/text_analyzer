@@ -40,6 +40,7 @@ class OpenAIProvider with ChangeNotifier {
       } else {
         _answer = '응답을 불러오지 못했습니다. 다시 시도해주세요.';
         print("API CALL FAILED");
+        print(response.body);
         notifyListeners();
       }
     }

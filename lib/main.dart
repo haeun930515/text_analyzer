@@ -27,10 +27,6 @@ void main() async {
     javaScriptAppKey: dotenv.env['KAKAO_JS_APP_KEY']!,
   );
 
-  // //스토리지 테스트
-  // FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-  // Reference ref = firebaseStorage.ref("test/text");
-  // ref.putString("test");
   // 카카오 로그인 해시 키 받는 함수
   hasykey();
 

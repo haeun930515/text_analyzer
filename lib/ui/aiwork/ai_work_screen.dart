@@ -21,74 +21,85 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
   }
 
   @override
+  void dispose() {
+    openAIProvider.finished = false;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF2062f3),
-      body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        Container(height: 140),
-        const Text(
-          "티키",
-          style: TextStyle(
-              fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        const Text(
-          "타카",
-          style: TextStyle(
-              fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        Consumer<OpenAIProvider>(builder: (context, provider, child) {
-          return Text(
-            provider.isFinished ? "완료" : "ing",
-            style: const TextStyle(
-                color: Color(0xFFfed756),
-                fontSize: 40,
-                fontWeight: FontWeight.bold),
-          );
-        }),
-        const SizedBox(height: 70),
-        Image.asset(
-          'assets/images/load_complete1.png',
-          height: 300,
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-        Consumer<OpenAIProvider>(
-          builder: (context, provider, child) {
-            return provider.isFinished
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 15),
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            )),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ResultScreen(
-                                        sm: provider.scoreModel,
-                                      )));
-                        },
-                        child: const Center(
-                          child: Text(
-                            "나의 능력치는?",
-                            style: TextStyle(
-                                color: Color(0xFF2062f3),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24),
-                          ),
-                        )),
-                  )
-                : const SizedBox(
-                    height: 0,
-                  );
-          },
-        ),
-      ]),
+    return WillPopScope(
+      onWillPop: () {
+        return Future(() => false);
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xFF2062f3),
+        body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Container(height: 140),
+          const Text(
+            "티키",
+            style: TextStyle(
+                fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          const Text(
+            "타카",
+            style: TextStyle(
+                fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          Consumer<OpenAIProvider>(builder: (context, provider, child) {
+            return Text(
+              provider.isFinished ? "완료" : "ing",
+              style: const TextStyle(
+                  color: Color(0xFFfed756),
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
+            );
+          }),
+          const SizedBox(height: 70),
+          Image.asset(
+            'assets/images/load_complete1.png',
+            height: 300,
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          Consumer<OpenAIProvider>(
+            builder: (context, provider, child) {
+              return provider.isFinished
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 15),
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              )),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ResultScreen(
+                                          sm: provider.scoreModel,
+                                        )));
+                          },
+                          child: const Center(
+                            child: Text(
+                              "나의 능력치는?",
+                              style: TextStyle(
+                                  color: Color(0xFF2062f3),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24),
+                            ),
+                          )),
+                    )
+                  : const SizedBox(
+                      height: 0,
+                    );
+            },
+          ),
+        ]),
+      ),
     );
   }
 }
