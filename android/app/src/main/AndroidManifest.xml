@@ -29,10 +29,6 @@ xmlns:tools="http://schemas.android.com/tools"
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
 
-                <meta-data
-                android:name="io.flutter.embedding.android.NormalTheme"
-                android:resource="@style/NormalTheme"
-                />
                 <!-- 카카오톡 공유, 카카오톡 메시지 -->
                 <data android:host="kakaolink"
                     android:scheme="kakao5944ab1f14b2f55ecc2266d6aa01b57a" />
@@ -45,7 +41,7 @@ xmlns:tools="http://schemas.android.com/tools"
             android:value="2" />
             <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.com.shekarmudaliyar.social_share"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true"
             tools:replace="android:authorities">
