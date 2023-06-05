@@ -14,6 +14,7 @@ class OpenAIProvider with ChangeNotifier {
   bool get isFinished => finished;
 
   getText(String text) async {
+    print("INPUT STRING : $text");
     final textBody = jsonEncode(TextSendModel(text).toJson());
     final url = Uri.parse('https://api.openai.com/v1/chat/completions');
     final headers = {
@@ -29,18 +30,24 @@ class OpenAIProvider with ChangeNotifier {
         // print(md['choices'][0]['message']['content']);
         ResultModel rm = ResultModel.fromJson(md);
         var rawData = rm.choices[0].message.content;
+
+        print(rm.choices[0].message.content);
+
         var score = ScoreModel.fromJson(getScore(rawData));
 
         _answer = answer;
         scoreModel = score;
         finished = true;
         print(rm.usage.totalTokens);
-        print(rm.choices[0].message.content);
         notifyListeners();
       } else {
         _answer = '응답을 불러오지 못했습니다. 다시 시도해주세요.';
         print("API CALL FAILED");
         print(response.body);
+        var score = ScoreModel.fromJson(
+            getScore(("기쁨: 2 \n호기심: 3 \n경계: 2\n분노: 1\n불안: 3")));
+        scoreModel = score;
+        finished = true;
         notifyListeners();
       }
     }
@@ -49,16 +56,20 @@ class OpenAIProvider with ChangeNotifier {
   String? get answer => _answer;
 
   Map<String, int> getScore(String str) {
-    Map<String, int> scores = {};
+    Map<String, int> scores = {"기쁨": 2, "호기심": 3, "경계": 2, "분노": 3, "불안": 1};
 
     List<String> chunks = str.split('\n');
 
-    for (String chunk in chunks) {
-      List<String> parts = chunk.split(':');
-      String key = parts[0].trim();
-      int value = int.parse(parts[1].trim());
-      scores[key] = value;
+    try {
+      for (String chunk in chunks) {
+        List<String> parts = chunk.split(':');
+        String key = parts[0].trim();
+        int value = int.parse(parts[1].trim());
+        scores[key] = value;
+      }
+      return scores;
+    } catch (e) {
+      return scores;
     }
-    return scores;
   }
 }

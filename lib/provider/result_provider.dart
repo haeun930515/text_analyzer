@@ -5,13 +5,15 @@ import 'package:text_analyzer/utils/strings.dart';
 class ResultProvider with ChangeNotifier {
   var _photo1 = "assets/images/resultDogsWithBody/dalma.png";
   var _photo2 = "assets/images/resultDogsWithBody/dalma.png";
-  var _title = "";
+  var _title1 = "";
+  var _title2 = "";
   var _main = "";
   var _sub = "";
 
   String get photo1 => _photo1;
   String get photo2 => _photo2;
-  String get title => _title;
+  String get title1 => _title1;
+  String get title2 => _title2;
   String get sub => _sub;
   String get main => _main;
 
@@ -64,7 +66,8 @@ class ResultProvider with ChangeNotifier {
       //달마시안 , 푸들 - 서로에게 관심이 부족합니다. 눈이라도 마주쳐 보세요
       _photo1 = Strings.picHound;
       _photo2 = Strings.picChew;
-      _title = Strings.case11111title;
+      _title1 = Strings.case11111title1;
+      _title2 = Strings.case11111title2;
       _sub = Strings.case11111sub;
       _main = Strings.case11111main;
     } else if (happyNum == 1 &&
@@ -78,7 +81,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picColy;
       _photo2 = Strings.picChiwawa;
 
-      _title = Strings.case11112title;
+      _title1 = Strings.case11112title1;
+      _title2 = Strings.case11112title2;
       _sub = Strings.case11112sub;
       _main = Strings.case11112main;
     } else if (happyNum == 1 &&
@@ -92,7 +96,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picBishon;
       _photo2 = Strings.picDalma;
 
-      _title = Strings.case11121title;
+      _title1 = Strings.case11121title1;
+      _title2 = Strings.case11121title2;
       _sub = Strings.case11121sub;
       _main = Strings.case11121main;
     } else if (happyNum == 1 &&
@@ -106,7 +111,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picShap;
       _photo2 = Strings.picPome;
 
-      _title = Strings.case11122title;
+      _title1 = Strings.case11122title1;
+      _title2 = Strings.case11122title2;
       _sub = Strings.case11122sub;
       _main = Strings.case11122main;
     } else if (happyNum == 1 &&
@@ -120,7 +126,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picHound;
       _photo2 = Strings.picPood;
 
-      _title = Strings.case11211title;
+      _title1 = Strings.case11211title1;
+      _title2 = Strings.case11211title2;
       _sub = Strings.case11211sub;
       _main = Strings.case11211main;
     } else if (happyNum == 1 &&
@@ -134,7 +141,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picChiwawa;
       _photo2 = Strings.picPood;
 
-      _title = Strings.case11212title;
+      _title1 = Strings.case11212title1;
+      _title2 = Strings.case11212title2;
       _sub = Strings.case11212sub;
       _main = Strings.case11212main;
     } else if (happyNum == 1 &&
@@ -148,7 +156,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picChew;
       _photo2 = Strings.picPome;
 
-      _title = Strings.case11221title;
+      _title1 = Strings.case11221title1;
+      _title2 = Strings.case11221title2;
       _sub = Strings.case11221sub;
       _main = Strings.case11221main;
     } else if (happyNum == 1 &&
@@ -162,7 +171,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picChiwawa;
       _photo2 = Strings.picYork;
 
-      _title = Strings.case11222title;
+      _title1 = Strings.case11222title1;
+      _title2 = Strings.case11222title2;
       _sub = Strings.case11222sub;
       _main = Strings.case11222main;
     } else if (happyNum == 1 &&
@@ -176,7 +186,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picMal;
       _photo2 = Strings.picPome;
 
-      _title = Strings.case12111title;
+      _title1 = Strings.case12111title1;
+      _title2 = Strings.case12111title2;
       _sub = Strings.case12111sub;
       _main = Strings.case12111main;
     } else if (happyNum == 1 &&
@@ -190,7 +201,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picHound;
       _photo2 = Strings.picMal;
 
-      _title = Strings.case12112title;
+      _title1 = Strings.case12112title1;
+      _title2 = Strings.case12112title2;
       _sub = Strings.case12112sub;
       _main = Strings.case12112main;
     } else if (happyNum == 1 &&
@@ -204,7 +216,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picYork;
       _photo2 = Strings.picPome;
 
-      _title = Strings.case12121title;
+      _title1 = Strings.case12121title1;
+      _title2 = Strings.case12121title2;
       _sub = Strings.case12121sub;
       _main = Strings.case12121main;
     } else if (happyNum == 1 &&
@@ -218,7 +231,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picDalma;
       _photo2 = Strings.picColy;
 
-      _title = Strings.case12122title;
+      _title1 = Strings.case12122title1;
+      _title2 = Strings.case12122title2;
       _sub = Strings.case12122sub;
       _main = Strings.case12122main;
     } else if (happyNum == 1 &&
@@ -232,7 +246,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picChew;
       _photo2 = Strings.picLit;
 
-      _title = Strings.case12211title;
+      _title1 = Strings.case12211title1;
+      _title2 = Strings.case12211title2;
       _sub = Strings.case12211sub;
       _main = Strings.case12211main;
     } else if (happyNum == 1 &&
@@ -246,7 +261,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picLit;
       _photo2 = Strings.picChiwawa;
 
-      _title = Strings.case12212title;
+      _title1 = Strings.case12212title1;
+      _title2 = Strings.case12212title2;
       _sub = Strings.case12212sub;
       _main = Strings.case12212main;
     } else if (happyNum == 1 &&
@@ -260,7 +276,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picChew;
       _photo2 = Strings.picShap;
 
-      _title = Strings.case12221title;
+      _title1 = Strings.case12221title1;
+      _title2 = Strings.case12221title2;
       _sub = Strings.case12221sub;
       _main = Strings.case12221main;
     } else if (happyNum == 1 &&
@@ -274,7 +291,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picDalma;
       _photo2 = Strings.picColy;
 
-      _title = Strings.case12222title;
+      _title1 = Strings.case12222title1;
+      _title2 = Strings.case12222title2;
       _sub = Strings.case12222sub;
       _main = Strings.case12222main;
     } else if (happyNum == 2 &&
@@ -288,7 +306,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picShap;
       _photo2 = Strings.picPood;
 
-      _title = Strings.case21111title;
+      _title1 = Strings.case21111title1;
+      _title2 = Strings.case21111title2;
       _sub = Strings.case21111sub;
       _main = Strings.case21111main;
     } else if (happyNum == 2 &&
@@ -302,7 +321,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picYork;
       _photo2 = Strings.picPood;
 
-      _title = Strings.case21112title;
+      _title1 = Strings.case21112title1;
+      _title2 = Strings.case21112title2;
       _sub = Strings.case21112sub;
       _main = Strings.case21112main;
     } else if (happyNum == 2 &&
@@ -316,7 +336,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picYork;
       _photo2 = Strings.picDalma;
 
-      _title = Strings.case21121title;
+      _title1 = Strings.case21121title1;
+      _title2 = Strings.case21121title2;
       _sub = Strings.case21121sub;
       _main = Strings.case21121main;
     } else if (happyNum == 2 &&
@@ -330,7 +351,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picShap;
       _photo2 = Strings.picYork;
 
-      _title = Strings.case21122title;
+      _title1 = Strings.case21122title1;
+      _title2 = Strings.case21122title2;
       _sub = Strings.case21122sub;
       _main = Strings.case21122main;
     } else if (happyNum == 2 &&
@@ -344,7 +366,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picShap;
       _photo2 = Strings.picColy;
 
-      _title = Strings.case21211title;
+      _title1 = Strings.case21211title1;
+      _title2 = Strings.case21211title2;
       _sub = Strings.case21211sub;
       _main = Strings.case21211main;
     } else if (happyNum == 2 &&
@@ -358,7 +381,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picLit;
       _photo2 = Strings.picChiwawa;
 
-      _title = Strings.case21212title;
+      _title1 = Strings.case21212title1;
+      _title2 = Strings.case21212title2;
       _sub = Strings.case21212sub;
       _main = Strings.case21212main;
     } else if (happyNum == 2 &&
@@ -372,7 +396,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picChiwawa;
       _photo2 = Strings.picPome;
 
-      _title = Strings.case21221title;
+      _title1 = Strings.case21221title1;
+      _title2 = Strings.case21221title2;
       _sub = Strings.case21221sub;
       _main = Strings.case21221main;
     } else if (happyNum == 2 &&
@@ -386,7 +411,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picYork;
       _photo2 = Strings.picLit;
 
-      _title = Strings.case21222title;
+      _title1 = Strings.case21222title1;
+      _title2 = Strings.case21222title2;
       _sub = Strings.case21222sub;
       _main = Strings.case21222main;
     } else if (happyNum == 2 &&
@@ -400,7 +426,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picMal;
       _photo2 = Strings.picPood;
 
-      _title = Strings.case22111title;
+      _title1 = Strings.case22111title1;
+      _title2 = Strings.case22111title2;
       _sub = Strings.case22111sub;
       _main = Strings.case22111main;
     } else if (happyNum == 2 &&
@@ -414,7 +441,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picLit;
       _photo2 = Strings.picColy;
 
-      _title = Strings.case22112title;
+      _title1 = Strings.case22112title1;
+      _title2 = Strings.case22112title2;
       _sub = Strings.case22112sub;
       _main = Strings.case22112main;
     } else if (happyNum == 2 &&
@@ -428,7 +456,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picMal;
       _photo2 = Strings.picYork;
 
-      _title = Strings.case22121title;
+      _title1 = Strings.case22121title1;
+      _title2 = Strings.case22121title2;
       _sub = Strings.case22121sub;
       _main = Strings.case22121main;
     } else if (happyNum == 2 &&
@@ -442,7 +471,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picDalma;
       _photo2 = Strings.picLit;
 
-      _title = Strings.case22122title;
+      _title1 = Strings.case22122title1;
+      _title2 = Strings.case22122title2;
       _sub = Strings.case22122sub;
       _main = Strings.case22122main;
     } else if (happyNum == 2 &&
@@ -456,7 +486,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picLit;
       _photo2 = Strings.picMal;
 
-      _title = Strings.case22211title;
+      _title1 = Strings.case22211title1;
+      _title2 = Strings.case22211title2;
       _sub = Strings.case22211sub;
       _main = Strings.case22211main;
     } else if (happyNum == 2 &&
@@ -470,7 +501,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picPood;
       _photo2 = Strings.picLit;
 
-      _title = Strings.case22212title;
+      _title1 = Strings.case22212title1;
+      _title2 = Strings.case22212title2;
       _sub = Strings.case22212sub;
       _main = Strings.case22212main;
     } else if (happyNum == 2 &&
@@ -484,7 +516,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picDalma;
       _photo2 = Strings.picMal;
 
-      _title = Strings.case22221title;
+      _title1 = Strings.case22221title1;
+      _title2 = Strings.case22221title2;
       _sub = Strings.case22221sub;
       _main = Strings.case22221main;
     } else if (happyNum == 2 &&
@@ -498,7 +531,8 @@ class ResultProvider with ChangeNotifier {
       _photo1 = Strings.picShap;
       _photo2 = Strings.picLit;
 
-      _title = Strings.case22222title;
+      _title1 = Strings.case22222title1;
+      _title2 = Strings.case22222title2;
       _sub = Strings.case22222sub;
       _main = Strings.case22222main;
     }

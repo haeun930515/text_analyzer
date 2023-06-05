@@ -10,7 +10,7 @@ class TextInputScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextFromImageProvider textFromImageProvider =
-        Provider.of<TextFromImageProvider>(context);
+        Provider.of(context, listen: false);
     return WillPopScope(
       onWillPop: () {
         return Future(() => false);
@@ -54,10 +54,9 @@ class TextInputScreen extends StatelessWidget {
                         children: [
                           ElevatedButton(
                             onPressed: () async {
-                              //이미지 피커 function to do
                               var str = await TextFromImageProvider()
                                   .getImageFromGallery();
-                              if (str != "") {
+                              if (str.isNotEmpty) {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -74,6 +73,8 @@ class TextInputScreen extends StatelessWidget {
                               }
                             },
                             style: ElevatedButton.styleFrom(
+                                shadowColor: Colors.black,
+                                elevation: 20,
                                 backgroundColor: const Color(0xFF2062f3),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(16))),
@@ -88,20 +89,20 @@ class TextInputScreen extends StatelessWidget {
                                     height: 50,
                                     width: 100,
                                     child: Icon(
-                                      Icons.textsms,
-                                      size: 50,
+                                      Icons.add,
+                                      size: 60,
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 30),
+                                SizedBox(height: 40),
                                 Text(
-                                  "대화 붙여넣기",
+                                  "대화붙여넣기",
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
-                                  height: 100,
+                                  height: 60,
                                 )
                               ],
                             ),

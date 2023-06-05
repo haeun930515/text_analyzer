@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '715267397910',
     projectId: 'tktk-19e10',
     storageBucket: 'tktk-19e10.appspot.com',
-    iosClientId: '715267397910-lgoe58pn0ojoasc51tsf0jf8vaglcfov.apps.googleusercontent.com',
-    iosBundleId: 'com.example.textAnalyzer',
+    iosClientId:
+        '715267397910-lgoe58pn0ojoasc51tsf0jf8vaglcfov.apps.googleusercontent.com',
+    iosBundleId: 'com.haeun.textAnalyzer',
   );
 }

@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.text_analyzer">
+    package="com.haeun.text_analyzer">
 
     //추가 권한
 
@@ -10,7 +10,7 @@ xmlns:tools="http://schemas.android.com/tools"
 
 
    <application
-        android:label="text_analyzer"
+        android:label="티키타캉"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -28,10 +28,11 @@ xmlns:tools="http://schemas.android.com/tools"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
-
+            </intent-filter>
+            <intent-filter>
                 <!-- 카카오톡 공유, 카카오톡 메시지 -->
                 <data android:host="kakaolink"
-                    android:scheme="kakao5944ab1f14b2f55ecc2266d6aa01b57a" />
+                    android:scheme="kakao4945f30d33f226a0332e8b6102e00f03" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
@@ -39,7 +40,7 @@ xmlns:tools="http://schemas.android.com/tools"
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-            <provider
+        <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
@@ -49,5 +50,9 @@ xmlns:tools="http://schemas.android.com/tools"
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3569330047818857~7036434952"
+        />
     </application>
 </manifest>

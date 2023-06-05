@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:text_analyzer/main.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
 import 'package:text_analyzer/ui/result/result_screen.dart';
+import 'package:text_analyzer/utils/strings.dart';
 
 class AiWorkScreen extends StatefulWidget {
   const AiWorkScreen({super.key, required this.input});
@@ -15,9 +18,12 @@ class AiWorkScreen extends StatefulWidget {
 class _AiWorkScreenState extends State<AiWorkScreen> {
   late OpenAIProvider openAIProvider;
   @override
-  void didChangeDependencies() {
-    openAIProvider = Provider.of<OpenAIProvider>(context);
-    openAIProvider.getText(widget.input);
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      openAIProvider = Provider.of<OpenAIProvider>(context, listen: false);
+      openAIProvider.getText(widget.input);
+    });
   }
 
   @override
@@ -28,6 +34,20 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
 
   @override
   Widget build(BuildContext context) {
+    TargetPlatform os = Theme.of(context).platform;
+
+    BannerAd banner = BannerAd(
+      listener: BannerAdListener(
+        onAdFailedToLoad: (Ad ad, LoadAdError error) {
+          print('Ad failed to load: $error');
+        },
+        onAdLoaded: (_) {},
+      ),
+      size: AdSize.mediumRectangle,
+      adUnitId: UNIT_ID[os == TargetPlatform.iOS ? 'ios' : 'android']!,
+      request: const AdRequest(),
+    )..load();
+
     return WillPopScope(
       onWillPop: () {
         return Future(() => false);
@@ -35,7 +55,7 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
       child: Scaffold(
         backgroundColor: const Color(0xFF2062f3),
         body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          Container(height: 140),
+          Container(height: 110),
           const Text(
             "티키",
             style: TextStyle(
@@ -55,10 +75,19 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
                   fontWeight: FontWeight.bold),
             );
           }),
-          const SizedBox(height: 70),
+          const SizedBox(height: 50),
           Image.asset(
-            'assets/images/load_complete1.png',
-            height: 300,
+            Strings.picAIWork,
+            height: 80,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          SizedBox(
+            height: 250,
+            child: AdWidget(
+              ad: banner,
+            ),
           ),
           const SizedBox(
             height: 40,

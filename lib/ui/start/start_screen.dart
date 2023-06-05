@@ -51,12 +51,12 @@ class StartScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 60),
                 Image.asset(
                   "assets/images/loading1.png",
-                  height: 300,
+                  height: 220,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 60),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/input');

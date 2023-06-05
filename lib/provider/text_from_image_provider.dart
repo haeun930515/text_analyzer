@@ -12,20 +12,24 @@ class TextFromImageProvider with ChangeNotifier {
   Future<String> getImageFromGallery() async {
     var picker = ImagePicker();
     var image = await picker.pickImage(source: ImageSource.gallery);
-    var inputImage = InputImage.fromFilePath(image!.path);
+    if (image != null) {
+      var inputImage = InputImage.fromFilePath(image.path);
 
-    String inputText = "";
+      String inputText = "";
 
-    TextLine line;
-    final recognizedText = await _textRecognizer.processImage(inputImage);
+      TextLine line;
+      final recognizedText = await _textRecognizer.processImage(inputImage);
 
-    for (TextBlock block in recognizedText.blocks) {
-      for (line in block.lines) {
-        inputText += line.text;
+      for (TextBlock block in recognizedText.blocks) {
+        for (line in block.lines) {
+          inputText += line.text;
+        }
       }
+      inputTxt = inputText;
+      notifyListeners();
+      return inputText;
+    } else {
+      return "";
     }
-    inputTxt = inputText;
-    notifyListeners();
-    return inputText;
   }
 }

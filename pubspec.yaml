@@ -1,7 +1,7 @@
 name: text_analyzer
 description: A new Flutter project.
 publish_to: 'none'
-version: 0.1.0
+version: 1.0.0
 
 environment:
   sdk: '>=2.19.0 <3.0.0'
@@ -27,6 +27,7 @@ dependencies:
   cloud_firestore: ^4.7.1
   firebase_storage: ^11.2.1
   social_share: ^2.3.1
+  google_mobile_ads: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -69,4 +70,17 @@ flutter:
     - assets/images/resultDogsWithBody/pood.png
     - assets/images/resultDogsWithBody/shap.png
     - assets/images/resultDogsWithBody/york.png
+    - assets/images/illustrate/il_aiwork.png
+    - assets/images/illustrate/il_bis.png
+    - assets/images/illustrate/il_bod.png
+    - assets/images/illustrate/il_che.png
+    - assets/images/illustrate/il_chi.png
+    - assets/images/illustrate/il_dal.png
+    - assets/images/illustrate/il_hou.png
+    - assets/images/illustrate/il_lit.png
+    - assets/images/illustrate/il_mal.png
+    - assets/images/illustrate/il_pod.png
+    - assets/images/illustrate/il_pom.png
+    - assets/images/illustrate/il_sha.png
+    - assets/images/illustrate/il_yor.png
     - .env

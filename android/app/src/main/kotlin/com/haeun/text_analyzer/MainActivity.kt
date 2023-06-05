@@ -1,4 +1,4 @@
-package com.example.text_analyzer
+package com.haeun.text_analyzer
 
 import io.flutter.embedding.android.FlutterActivity
 

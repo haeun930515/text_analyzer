@@ -30,167 +30,184 @@ class _HelpDialogState extends State<HelpDialog> {
         child: Column(
           children: [
             SizedBox(
-              height: 480,
+              height: 500,
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-                child: PageView(
-                  controller: _pageController,
-                  onPageChanged: (page) {
-                    setState(() {
-                      selectedPage = page;
-                    });
-                  },
-                  children: <Widget>[
-                    Container(
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 60,
-                          ),
-                          const Text(
-                            "카카오톡 캡쳐 선택 후",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Row(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              const SizedBox(
-                                width: 100,
-                              ),
-                              Image.asset(
-                                'assets/images/image_background.png',
-                                width: 200,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          const Text(
-                            "꼭 지켜주세요",
-                            style: TextStyle(
-                                color: Color(0xFF2062f3),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Text(
-                                "'기본배경'",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF2062f3)),
-                              ),
-                              Text(
-                                "만 가능합니다",
-                                style: TextStyle(
-                                    fontSize: 18, color: Color(0xFF2062f3)),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop();
+                                },
+                                child: const Icon(Icons.close),
                               )
-                            ],
+                            ]),
+                      ),
+                    ),
+                    Expanded(
+                      child: PageView(
+                        controller: _pageController,
+                        onPageChanged: (page) {
+                          setState(() {
+                            selectedPage = page;
+                          });
+                        },
+                        children: <Widget>[
+                          Container(
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 40,
+                                ),
+                                const Text(
+                                  "카카오톡 캡쳐 선택 후",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                Image.asset(
+                                  'assets/images/image_background.png',
+                                  width: 200,
+                                ),
+                                const SizedBox(
+                                  height: 40,
+                                ),
+                                const Text(
+                                  "꼭 지켜주세요",
+                                  style: TextStyle(
+                                      color: Color(0xFF2062f3),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "'기본배경'",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFF2062f3)),
+                                    ),
+                                    Text(
+                                      "만 가능합니다",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFF2062f3)),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 60,
+                                ),
+                                const Text(
+                                  "대화 캡쳐하고",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                Image.asset(
+                                  'assets/images/capture.png',
+                                  width: 200,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 60,
+                                ),
+                                const Text(
+                                  "사진 붙여넣기 하면",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                Image.asset(
+                                  'assets/images/choose_photo.png',
+                                  width: 200,
+                                ),
+                                const SizedBox(
+                                  height: 40,
+                                ),
+                                const Text(
+                                  "1개만 선택 가능합니다",
+                                  style: TextStyle(
+                                      color: Color(0xFF2062f3), fontSize: 18),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 60,
+                                ),
+                                const Text(
+                                  "우리의 티키타캉력 획득",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                Image.asset(
+                                  'assets/images/loading1.png',
+                                  width: 200,
+                                ),
+                                const SizedBox(
+                                  height: 40,
+                                ),
+                                const Text(
+                                  "요크셔테리어, 포메라니안",
+                                  style: TextStyle(
+                                      color: Color(0xFF2062f3),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                const Text(
+                                  "서로를 성장 시키는 열정적인 파트너.",
+                                  style: TextStyle(
+                                      fontSize: 18, color: Color(0xFF2062f3)),
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
                     ),
-                    Container(
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 60,
-                          ),
-                          const Text(
-                            "대화 캡쳐하고",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Image.asset(
-                            'assets/images/capture.png',
-                            width: 200,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 60,
-                          ),
-                          const Text(
-                            "사진 붙여넣기 하면",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Image.asset(
-                            'assets/images/choose_photo.png',
-                            width: 200,
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          const Text(
-                            "1개만 선택 가능합니다",
-                            style: TextStyle(
-                                color: Color(0xFF2062f3), fontSize: 18),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 60,
-                          ),
-                          const Text(
-                            "우리의 티키타캉력 획득",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Image.asset(
-                            'assets/images/loading1.png',
-                            width: 200,
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          const Text(
-                            "비숑프리제 vs 포메라니안",
-                            style: TextStyle(
-                                color: Color(0xFF2062f3),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
-                          ),
-                          const Text(
-                            "서로를 향해 너무 달려들지만 마세요.",
-                            style: TextStyle(
-                                fontSize: 18, color: Color(0xFF2062f3)),
-                          )
-                        ],
-                      ),
-                    )
                   ],
                 ),
               ),

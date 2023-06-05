@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/facebook_provider.dart';
 import 'package:text_analyzer/provider/insta_provider.dart';
@@ -12,7 +13,18 @@ import 'package:text_analyzer/ui/textinput/text_input_screen.dart';
 import 'package:text_analyzer/ui/start/start_screen.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'firebase_options.dart';
+
+const Map<String, String> UNIT_ID = kReleaseMode
+    ? {
+        'ios': 'ca-app-pub-3569330047818857~7191513472',
+        'android': 'ca-app-pub-3569330047818857~7036434952',
+      }
+    : {
+        'ios': 'ca-app-pub-3940256099942544/2934735716',
+        'android': 'ca-app-pub-3940256099942544/6300978111',
+      };
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +41,8 @@ void main() async {
 
   // 카카오 로그인 해시 키 받는 함수
   hasykey();
+
+  MobileAds.instance.initialize();
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<OpenAIProvider>(create: (_) => OpenAIProvider()),
