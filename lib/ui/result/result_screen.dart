@@ -124,12 +124,15 @@ class _ResultScreenState extends State<ResultScreen> {
                           height: 80,
                         ),
                         //설명
-                        Text(
-                          value.sub,
-                          style: const TextStyle(
-                              fontSize: 26,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 55.0),
+                          child: Text(
+                            value.sub,
+                            style: const TextStyle(
+                                fontSize: 26,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                         const SizedBox(
                           height: 14,
@@ -273,7 +276,7 @@ class _ResultScreenState extends State<ResultScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                ScoreWidget(widget.sm.happiness + 1),
+                                ScoreWidget(widget.sm.happiness),
                                 const SizedBox(
                                   height: 10,
                                 ),
@@ -281,15 +284,15 @@ class _ResultScreenState extends State<ResultScreen> {
                                 const SizedBox(
                                   height: 10,
                                 ),
+                                ScoreWidget(widget.sm.vigilance),
+                                const SizedBox(
+                                  height: 10,
+                                ),
                                 ScoreWidget(widget.sm.anger),
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                ScoreWidget(widget.sm.anxiety),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                ScoreWidget(widget.sm.vigilance)
+                                ScoreWidget(widget.sm.anxiety)
                               ],
                             ),
                           ],

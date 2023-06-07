@@ -56,7 +56,7 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>앱에서 캡처한 이미지를 저장하기 위해 사진 라이브러리에 접근합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Photo Library Access Warning</string>
+	<string>앱에서 캡처한 이미지를 이용해 대화를 가져오기 위해 사진 라이브러리에 접근합니다.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
