@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/model/score_model.dart';
 import 'package:text_analyzer/provider/kakao_provider.dart';
@@ -48,6 +48,80 @@ class _ResultScreenState extends State<ResultScreen> {
     }
 
     return result;
+  }
+
+  _onBackPressed() {
+    showDialog(
+        context: context,
+        builder: (context) => Dialog(
+              child: SizedBox(
+                height: 200,
+                width: 200,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "앱을 종료할까요?",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Image.asset(
+                        Strings.picAIWork,
+                        height: 50,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            MaterialButton(
+                              onPressed: () {
+                                SystemNavigator.pop();
+                              },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4)),
+                              color: const Color(0xFF2062f3),
+                              child: const Text(
+                                "종료하기",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ),
+                            MaterialButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4)),
+                              color: Colors.grey[400],
+                              child: const Text(
+                                "취소",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ));
   }
 
   Future<String> capture(GlobalKey globalKey) async {
@@ -480,9 +554,7 @@ class _ResultScreenState extends State<ResultScreen> {
     );
 
     return WillPopScope(
-      onWillPop: () {
-        return Future(() => false);
-      },
+      onWillPop: _onBackPressed(),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: body,

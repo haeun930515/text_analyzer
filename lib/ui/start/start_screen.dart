@@ -1,14 +1,89 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../../utils/strings.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    _onBackPressed() {
+      showDialog(
+          context: context,
+          builder: (context) => Dialog(
+                child: SizedBox(
+                  height: 200,
+                  width: 200,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Text(
+                          "앱을 종료할까요?",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Image.asset(
+                          Strings.picAIWork,
+                          height: 50,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              MaterialButton(
+                                onPressed: () {
+                                  SystemNavigator.pop();
+                                },
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4)),
+                                color: const Color(0xFF2062f3),
+                                child: const Text(
+                                  "종료하기",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ),
+                              MaterialButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4)),
+                                color: Colors.grey[400],
+                                child: const Text(
+                                  "취소",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ));
+    }
+
     return WillPopScope(
-      onWillPop: () {
-        return Future(() => false);
-      },
+      onWillPop: _onBackPressed(),
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: const Color(0xFF2062f3),

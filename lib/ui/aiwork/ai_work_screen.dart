@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/main.dart';
@@ -32,6 +33,80 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
     super.dispose();
   }
 
+  _onBackPressed() {
+    showDialog(
+        context: context,
+        builder: (context) => Dialog(
+              child: SizedBox(
+                height: 200,
+                width: 200,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "앱을 종료할까요?",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Image.asset(
+                        Strings.picAIWork,
+                        height: 50,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            MaterialButton(
+                              onPressed: () {
+                                SystemNavigator.pop();
+                              },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4)),
+                              color: const Color(0xFF2062f3),
+                              child: const Text(
+                                "종료하기",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ),
+                            MaterialButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4)),
+                              color: Colors.grey[400],
+                              child: const Text(
+                                "취소",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     TargetPlatform os = Theme.of(context).platform;
@@ -49,9 +124,7 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
     )..load();
 
     return WillPopScope(
-      onWillPop: () {
-        return Future(() => false);
-      },
+      onWillPop: _onBackPressed(),
       child: Scaffold(
         backgroundColor: const Color(0xFF2062f3),
         body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [

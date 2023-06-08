@@ -51,7 +51,7 @@ xmlns:tools="http://schemas.android.com/tools"
         </provider>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3569330047818857~7036434952"
+            android:value="ca-app-pub-8738315695455286~1128839442"
         />
     </application>
 </manifest>
