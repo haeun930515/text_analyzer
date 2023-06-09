@@ -18,8 +18,8 @@ import 'firebase_options.dart';
 
 const Map<String, String> UNIT_ID = kReleaseMode
     ? {
-        'ios': 'ca-app-pub-8738315695455286~8425268744',
-        'android': 'ca-app-pub-8738315695455286~1128839442',
+        'ios': 'ca-app-pub-8738315695455286/9522334783',
+        'android': 'ca-app-pub-8738315695455286/5479147991',
       }
     : {
         'ios': 'ca-app-pub-3940256099942544/2934735716',

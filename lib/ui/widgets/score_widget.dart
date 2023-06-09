@@ -10,6 +10,8 @@ class ScoreWidget extends StatelessWidget {
 
   double widCalc(int score) {
     switch (score) {
+      case 0:
+        return 26.0;
       case 1:
         return 26.0;
       case 2:
@@ -21,7 +23,7 @@ class ScoreWidget extends StatelessWidget {
       case 5:
         return 192.0;
       default:
-        return 0.0;
+        return 26.0;
     }
   }
 

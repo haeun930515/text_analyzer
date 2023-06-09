@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -18,100 +20,14 @@ class AiWorkScreen extends StatefulWidget {
 
 class _AiWorkScreenState extends State<AiWorkScreen> {
   late OpenAIProvider openAIProvider;
+  BannerAd? _bannerAd;
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () {
-      openAIProvider = Provider.of<OpenAIProvider>(context, listen: false);
-      openAIProvider.getText(widget.input);
-    });
-  }
 
-  @override
-  void dispose() {
-    openAIProvider.finished = false;
-    super.dispose();
-  }
-
-  _onBackPressed() {
-    showDialog(
-        context: context,
-        builder: (context) => Dialog(
-              child: SizedBox(
-                height: 200,
-                width: 200,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text(
-                        "앱을 종료할까요?",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Image.asset(
-                        Strings.picAIWork,
-                        height: 50,
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            MaterialButton(
-                              onPressed: () {
-                                SystemNavigator.pop();
-                              },
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                              color: const Color(0xFF2062f3),
-                              child: const Text(
-                                "종료하기",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                            ),
-                            MaterialButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                              color: Colors.grey[400],
-                              child: const Text(
-                                "취소",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ));
-  }
-
-  @override
-  Widget build(BuildContext context) {
     TargetPlatform os = Theme.of(context).platform;
-
-    BannerAd banner = BannerAd(
+    _bannerAd = BannerAd(
       listener: BannerAdListener(
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
           print('Ad failed to load: $error');
@@ -122,9 +38,103 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
       adUnitId: UNIT_ID[os == TargetPlatform.iOS ? 'ios' : 'android']!,
       request: const AdRequest(),
     )..load();
+    Future.delayed(Duration.zero, () {
+      openAIProvider = Provider.of<OpenAIProvider>(context, listen: false);
+      openAIProvider.getText(widget.input);
+    });
+  }
 
+  @override
+  void dispose() {
+    openAIProvider.finished = false;
+
+    super.dispose();
+    _bannerAd!.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: _onBackPressed(),
+      onWillPop: () async {
+        if (Platform.isAndroid) {
+          showDialog(
+              context: context,
+              builder: (context) => Dialog(
+                    child: SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Text(
+                              "앱을 종료할까요?",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Image.asset(
+                              Strings.picAIWork,
+                              height: 50,
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 18.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  MaterialButton(
+                                    onPressed: () {
+                                      SystemNavigator.pop();
+                                    },
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(4)),
+                                    color: const Color(0xFF2062f3),
+                                    child: const Text(
+                                      "종료하기",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                  MaterialButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(4)),
+                                    color: Colors.grey[400],
+                                    child: const Text(
+                                      "취소",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ));
+          return false;
+        } else {
+          return false;
+        }
+      },
       child: Scaffold(
         backgroundColor: const Color(0xFF2062f3),
         body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -159,7 +169,7 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
           SizedBox(
             height: 250,
             child: AdWidget(
-              ad: banner,
+              ad: _bannerAd!,
             ),
           ),
           const SizedBox(
@@ -167,6 +177,9 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
           ),
           Consumer<OpenAIProvider>(
             builder: (context, provider, child) {
+              if (provider.isFinished) {
+                const Duration(seconds: 3);
+              }
               return provider.isFinished
                   ? Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),

@@ -1,7 +1,7 @@
 name: text_analyzer
 description: A new Flutter project.
 publish_to: 'none'
-version: 3.0.0+3
+version: 5.0.0+5
 
 environment:
   sdk: '>=2.19.0 <3.0.0'
