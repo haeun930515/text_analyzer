@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -13,7 +14,6 @@ import 'package:text_analyzer/ui/textinput/text_input_screen.dart';
 import 'package:text_analyzer/ui/start/start_screen.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'firebase_options.dart';
 
 const Map<String, String> UNIT_ID = kReleaseMode
@@ -68,7 +68,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      initialRoute: '/start',
       routes: {
         '/start': (context) => const StartScreen(),
         '/input': (context) => const TextInputScreen(),

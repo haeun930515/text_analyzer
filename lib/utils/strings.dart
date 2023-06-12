@@ -27,6 +27,8 @@ class Strings {
   static String picilsha = "assets/images/illustrate/il_sha.png";
   static String picilyor = "assets/images/illustrate/il_yor.png";
 
+  static String gifStep = "assets/images/utils/dog_step.gif";
+
   //11111 -1
   static String case11111title1 = "하운드";
   static String case11111title2 = "시츄";

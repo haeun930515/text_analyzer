@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
-import 'package:text_analyzer/main.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
-import 'package:text_analyzer/ui/result/result_screen.dart';
 import 'package:text_analyzer/utils/strings.dart';
+
+import '../../main.dart';
+import '../result/result_screen.dart';
 
 class AiWorkScreen extends StatefulWidget {
   const AiWorkScreen({super.key, required this.input});
@@ -25,6 +26,11 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
     TargetPlatform os = Theme.of(context).platform;
     _bannerAd = BannerAd(
@@ -38,7 +44,7 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
       adUnitId: UNIT_ID[os == TargetPlatform.iOS ? 'ios' : 'android']!,
       request: const AdRequest(),
     )..load();
-    Future.delayed(Duration.zero, () {
+    Future.delayed(const Duration(seconds: 3), () {
       openAIProvider = Provider.of<OpenAIProvider>(context, listen: false);
       openAIProvider.getText(widget.input);
     });
@@ -48,8 +54,8 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
   void dispose() {
     openAIProvider.finished = false;
 
-    super.dispose();
     _bannerAd!.dispose();
+    super.dispose();
   }
 
   @override
@@ -159,9 +165,21 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
             );
           }),
           const SizedBox(height: 50),
-          Image.asset(
-            Strings.picAIWork,
-            height: 80,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                Strings.picAIWork,
+                height: 80,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Image.asset(
+                Strings.gifStep,
+                height: 80,
+              )
+            ],
           ),
           const SizedBox(
             height: 30,
@@ -177,9 +195,6 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
           ),
           Consumer<OpenAIProvider>(
             builder: (context, provider, child) {
-              if (provider.isFinished) {
-                const Duration(seconds: 3);
-              }
               return provider.isFinished
                   ? Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),

@@ -6,14 +6,12 @@ class KakaoShareProvider extends ChangeNotifier {
     print(imagePath);
     FeedTemplate feedTemplate = FeedTemplate(
       content: Content(
-        title: '우리의 대화 분석 결과 공유',
-        description: '우리의 대화 분석 결과가 나왔어요!',
+        title: 'AI가 분석한 우리의 대화',
+        description: '다른 대화도 분석하러 가볼까요?',
         imageUrl: Uri.parse(imagePath),
         link: Link(
-          androidExecutionParams: <String, String>{'key': 'value'},
-          iosExecutionParams: <String, String>{'key': 'value'},
-          mobileWebUrl: Uri.parse('https://example.com'),
-          webUrl: Uri.parse('https://example.com'),
+          androidExecutionParams: {'key1': 'value1', 'key2': 'value2'},
+          iosExecutionParams: {'key1': 'value1', 'key2': 'value2'},
         ),
       ),
     );

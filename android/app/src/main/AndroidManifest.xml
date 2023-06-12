@@ -27,6 +27,7 @@ xmlns:tools="http://schemas.android.com/tools"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
             <intent-filter>
                 <!-- 카카오톡 공유, 카카오톡 메시지 -->

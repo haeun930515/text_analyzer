@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:715267397910:android:b234242b6619b21ca81837",
+        "mobilesdk_app_id": "1:715267397910:android:1af14c949b15388ca81837",
         "android_client_info": {
           "package_name": "com.haeun.text_analyzer"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "715267397910-pgf99mm643ob8m8mc7t5tr0otdj716si.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.haeun.text_analyzer",
+            "certificate_hash": "cbea849707ad22789b2dff1fa9d24a1c67a17f6a"
+          }
+        },
         {
           "client_id": "715267397910-i789d713epqvuui8e7j4lcvb7c7mddvu.apps.googleusercontent.com",
           "client_type": 3
@@ -31,10 +39,11 @@
               "client_type": 3
             },
             {
-              "client_id": "715267397910-lgoe58pn0ojoasc51tsf0jf8vaglcfov.apps.googleusercontent.com",
+              "client_id": "715267397910-5keh60u1ekg27vhh6eqpbogt9cjqnghf.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.haeun.textAnalyzer"
+                "bundle_id": "com.haeun.textAnalyzer",
+                "app_store_id": "6449925077"
               }
             }
           ]

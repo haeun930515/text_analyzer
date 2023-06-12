@@ -83,4 +83,5 @@ flutter:
     - assets/images/illustrate/il_pom.png
     - assets/images/illustrate/il_sha.png
     - assets/images/illustrate/il_yor.png
+    - assets/images/utils/dog_step.gif
     - .env

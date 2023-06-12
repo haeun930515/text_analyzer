@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/text_from_image_provider.dart';
-import 'package:text_analyzer/ui/aiwork/ai_work_screen.dart';
 import 'package:text_analyzer/ui/dialog/help_dialog.dart';
 
 import '../../utils/strings.dart';
+import '../aiwork/ai_work_screen.dart';
 
-class TextInputScreen extends StatelessWidget {
+class TextInputScreen extends StatefulWidget {
   const TextInputScreen({super.key});
 
+  @override
+  State<TextInputScreen> createState() => _TextInputScreenState();
+}
+
+class _TextInputScreenState extends State<TextInputScreen> {
   @override
   Widget build(BuildContext context) {
     TextFromImageProvider textFromImageProvider =
@@ -118,7 +123,7 @@ class TextInputScreen extends StatelessWidget {
                       const Row(
                         children: [
                           Text(
-                            "티키타카력은?",
+                            "티키타캉력은?",
                             style: TextStyle(
                                 fontSize: 40, fontWeight: FontWeight.bold),
                           ),
@@ -129,7 +134,26 @@ class TextInputScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        height: 70,
+                        height: 24,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "대화붙여넣기 버튼을 눌러 ",
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            Text(
+                              "대화가 포함된 이미지를 업로드 해주세요",
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 32,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

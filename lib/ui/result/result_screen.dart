@@ -480,7 +480,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                                       Navigator.popUntil(
                                                           context,
                                                           ModalRoute.withName(
-                                                              '/'));
+                                                              '/start'));
                                                     },
                                                     shape:
                                                         RoundedRectangleBorder(

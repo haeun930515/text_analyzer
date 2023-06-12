@@ -123,7 +123,16 @@ class StartScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 15),
+                const Center(
+                  child: Text(
+                    "AI가 분석해주는",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
                 const Center(
                   child: Text(
                     "우리의 대화 능력치는?",
@@ -133,30 +142,31 @@ class StartScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SizedBox(height: 60),
+                const SizedBox(height: 40),
                 Image.asset(
                   "assets/images/loading1.png",
                   height: 220,
                 ),
                 const SizedBox(height: 60),
-                ElevatedButton(
-                  onPressed: () {
+                InkWell(
+                  onTap: () {
                     Navigator.pushNamed(context, '/input');
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text(
-                      "시작하기",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF2062f3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16.0),
+                        color: Colors.white),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Text(
+                          "시작하기",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF2062f3),
+                          ),
+                        ),
                       ),
                     ),
                   ),
