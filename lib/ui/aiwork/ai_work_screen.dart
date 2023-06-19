@@ -2,13 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
 import 'package:text_analyzer/utils/strings.dart';
-
-import '../../main.dart';
 import '../result/result_screen.dart';
+import 'package:flutter_adfit/flutter_adfit.dart';
 
 class AiWorkScreen extends StatefulWidget {
   const AiWorkScreen({super.key, required this.input});
@@ -21,8 +19,6 @@ class AiWorkScreen extends StatefulWidget {
 
 class _AiWorkScreenState extends State<AiWorkScreen> {
   late OpenAIProvider openAIProvider;
-  BannerAd? _bannerAd;
-
   @override
   void initState() {
     super.initState();
@@ -31,19 +27,6 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    TargetPlatform os = Theme.of(context).platform;
-    _bannerAd = BannerAd(
-      listener: BannerAdListener(
-        onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          print('Ad failed to load: $error');
-        },
-        onAdLoaded: (_) {},
-      ),
-      size: AdSize.mediumRectangle,
-      adUnitId: UNIT_ID[os == TargetPlatform.iOS ? 'ios' : 'android']!,
-      request: const AdRequest(),
-    )..load();
     Future.delayed(const Duration(seconds: 3), () {
       openAIProvider = Provider.of<OpenAIProvider>(context, listen: false);
       openAIProvider.getText(widget.input);
@@ -53,8 +36,6 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
   @override
   void dispose() {
     openAIProvider.finished = false;
-
-    _bannerAd!.dispose();
     super.dispose();
   }
 
@@ -175,21 +156,41 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
               const SizedBox(
                 width: 10,
               ),
-              Image.asset(
-                Strings.gifStep,
-                height: 80,
-              )
+              Consumer<OpenAIProvider>(builder: (context, provider, child) {
+                return provider.isFinished
+                    ? Image.asset(Strings.picilche, height: 80)
+                    : Image.asset(
+                        Strings.gifStep,
+                        height: 80,
+                      );
+              }),
             ],
           ),
           const SizedBox(
             height: 30,
           ),
           SizedBox(
-            height: 250,
-            child: AdWidget(
-              ad: _bannerAd!,
-            ),
-          ),
+              height: 250,
+              child: AdFitBanner(
+                adId: Platform.isIOS
+                    ? 'DAN-2nNkPKdKcqpNTw5J'
+                    : Platform.isAndroid
+                        ? 'DAN-EtlopZ9bc05D6PCJ'
+                        : '',
+                adSize: AdFitBannerSize.LARGE_RECTANGLE,
+                listener: (AdFitEvent event, AdFitEventData data) {
+                  switch (event) {
+                    case AdFitEvent.AdReceived:
+                      break;
+                    case AdFitEvent.AdClicked:
+                      break;
+                    case AdFitEvent.AdReceiveFailed:
+                      break;
+                    case AdFitEvent.OnError:
+                      break;
+                  }
+                },
+              )),
           const SizedBox(
             height: 40,
           ),

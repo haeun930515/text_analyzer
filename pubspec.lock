@@ -129,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.1"
+  facebook_audience_network:
+    dependency: "direct main"
+    description:
+      name: facebook_audience_network
+      sha256: "44eb10576b861c5872d1eec3fc9abe7494500314e4e02c49c06dbdd549c9ade0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -214,6 +222,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_adfit:
+    dependency: "direct main"
+    description:
+      name: flutter_adfit
+      sha256: "9b7ae8785b310e38a037a95b9779ba486bc9101859185236f29700ffa010f0a8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   flutter_dotenv:
     dependency: "direct main"
     description:

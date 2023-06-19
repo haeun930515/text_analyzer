@@ -95,6 +95,7 @@ class StartScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: const Color(0xFF2062f3),
             elevation: 0,
+            automaticallyImplyLeading: Platform.isAndroid,
           ),
           backgroundColor: const Color(0xFF2062f3),
           body: Padding(

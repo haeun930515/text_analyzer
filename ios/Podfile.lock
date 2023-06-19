@@ -596,6 +596,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - AdFitSDK (3.11.5)
   - BoringSSL-GRPC (0.0.24):
     - BoringSSL-GRPC/Implementation (= 0.0.24)
     - BoringSSL-GRPC/Interface (= 0.0.24)
@@ -607,6 +608,10 @@ PODS:
     - firebase_core
     - Flutter
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - facebook_audience_network (0.0.1):
+    - FBAudienceNetwork (~> 6.3)
+    - Flutter
+  - FBAudienceNetwork (6.12.0)
   - Firebase/CoreOnly (10.9.0):
     - FirebaseCore (= 10.9.0)
   - Firebase/Firestore (10.9.0):
@@ -652,6 +657,9 @@ PODS:
     - FirebaseCoreExtension (~> 10.0)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
   - Flutter (1.0.0)
+  - flutter_adfit (0.0.3):
+    - AdFitSDK (~> 3.11.5)
+    - Flutter
   - flutter_share (0.0.1):
     - Flutter
   - Google-Mobile-Ads-SDK (10.4.0):
@@ -1015,9 +1023,11 @@ PODS:
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
+  - facebook_audience_network (from `.symlinks/plugins/facebook_audience_network/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
+  - flutter_adfit (from `.symlinks/plugins/flutter_adfit/ios`)
   - flutter_share (from `.symlinks/plugins/flutter_share/ios`)
   - google_mlkit_barcode_scanning (from `.symlinks/plugins/google_mlkit_barcode_scanning/ios`)
   - google_mlkit_commons (from `.symlinks/plugins/google_mlkit_commons/ios`)
@@ -1045,7 +1055,9 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - AdFitSDK
     - BoringSSL-GRPC
+    - FBAudienceNetwork
     - Firebase
     - FirebaseAppCheckInterop
     - FirebaseAuthInterop
@@ -1102,12 +1114,16 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
+  facebook_audience_network:
+    :path: ".symlinks/plugins/facebook_audience_network/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_storage:
     :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
+  flutter_adfit:
+    :path: ".symlinks/plugins/flutter_adfit/ios"
   flutter_share:
     :path: ".symlinks/plugins/flutter_share/ios"
   google_mlkit_barcode_scanning:
@@ -1155,8 +1171,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
+  AdFitSDK: 6ca77efc6a66a18d65a96c8f332e972f6020d96a
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   cloud_firestore: f9951b7475ab483af80514228921edbef7109fff
+  facebook_audience_network: bb22bdda913d419d8c3247c9570bda4563302417
+  FBAudienceNetwork: e0fcc9091fced34910ed0b6da06f129db46ac9e6
   Firebase: bd152f0f3d278c4060c5c71359db08ebcfd5a3e2
   firebase_core: fc68c0f9eec4e800b9418deff14a7e0a504016f3
   firebase_storage: 09fe224b1ae65ffb74241f2e3e89c8ebabbaa5cb
@@ -1168,6 +1187,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 584d0e1b0f7f1666c516c5157ff06e785bd8836f
   FirebaseStorage: 075a0c10ec43f24193018c539d65e991db65d9ef
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_adfit: 3a891eb3f7fd899baad1fd38db32b8dcc6d2351b
   flutter_share: 4be0208963c60b537e6255ed2ce1faae61cd9ac2
   Google-Mobile-Ads-SDK: 32fe7836431a06a29f7734ae092b600137c8108d
   google_mlkit_barcode_scanning: 9f397872c1e109f95b014de14afbca22dc05c854
@@ -1235,6 +1255,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
-PODFILE CHECKSUM: e02265ba353844e68658c441bdecd904636c27f7
+PODFILE CHECKSUM: 025d7c3c5aec127d8ca1c88f3ac90d0ab82fce0b
 
 COCOAPODS: 1.12.1

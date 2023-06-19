@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:facebook_audience_network/ad/ad_interstitial.dart';
+import 'package:facebook_audience_network/ad/ad_rewarded.dart';
+import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +20,62 @@ class TextInputScreen extends StatefulWidget {
 }
 
 class _TextInputScreenState extends State<TextInputScreen> {
+  bool _isInterstitialAdLoaded = false;
+  bool _isRewardedAdLoaded = false;
+  @override
+  void initState() {
+    super.initState();
+
+    /// please add your own device testingId
+    /// (testingId will print in console if you don't provide  )
+    // FacebookAudienceNetwork.init(
+    //   testingId: "a77955ee-3304-4635-be65-81029b0f5201",
+    //   iOSAdvertiserTrackingEnabled: true,
+    // );
+
+    // Platform.isAndroid ? _loadRewardedVideoAd() : _loadInterstitialAd();
+  }
+
+  void _loadInterstitialAd() {
+    FacebookInterstitialAd.loadInterstitialAd(
+      // placementId: "YOUR_PLACEMENT_ID",
+      placementId: "1300785473839184_1315760852341646",
+      listener: (result, value) {
+        print(">> FAN > Interstitial Ad: $result --> $value");
+        if (result == InterstitialAdResult.LOADED) {
+          _isInterstitialAdLoaded = true;
+        }
+
+        /// Once an Interstitial Ad has been dismissed and becomes invalidated,
+        /// load a fresh Ad by calling this function.
+        if (result == InterstitialAdResult.DISMISSED &&
+            value["invalidated"] == true) {
+          _isInterstitialAdLoaded = false;
+          _loadInterstitialAd();
+        }
+      },
+    );
+  }
+
+  void _loadRewardedVideoAd() {
+    FacebookRewardedVideoAd.loadRewardedVideoAd(
+      placementId: "1300785473839184_1315721489012249",
+      listener: (result, value) {
+        print("Rewarded Ad: $result --> $value");
+        if (result == RewardedVideoAdResult.LOADED) _isRewardedAdLoaded = true;
+        if (result == RewardedVideoAdResult.VIDEO_COMPLETE)
+
+        /// Once a Rewarded Ad has been closed and becomes invalidated,
+        /// load a fresh Ad by calling this function.
+        if (result == RewardedVideoAdResult.VIDEO_CLOSED &&
+            (value == true || value["invalidated"] == true)) {
+          _isRewardedAdLoaded = false;
+          _loadRewardedVideoAd();
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     TextFromImageProvider textFromImageProvider =
@@ -163,6 +222,9 @@ class _TextInputScreenState extends State<TextInputScreen> {
                               var str = await TextFromImageProvider()
                                   .getImageFromGallery();
                               if (str.isNotEmpty) {
+                                // Platform.isAndroid
+                                //     ? _showRewardedAd()
+                                //     : _showInterstitialAd();
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -250,5 +312,21 @@ class _TextInputScreenState extends State<TextInputScreen> {
         ),
       ),
     );
+  }
+
+  _showInterstitialAd() {
+    if (_isInterstitialAdLoaded == true) {
+      FacebookInterstitialAd.showInterstitialAd();
+    } else {
+      print("Interstial Ad not yet loaded!");
+    }
+  }
+
+  _showRewardedAd() {
+    if (_isRewardedAdLoaded == true) {
+      FacebookRewardedVideoAd.showRewardedVideoAd();
+    } else {
+      print("Rewarded Ad not yet loaded!");
+    }
   }
 }

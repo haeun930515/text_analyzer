@@ -1,7 +1,7 @@
 name: text_analyzer
 description: A new Flutter project.
 publish_to: 'none'
-version: 5.0.0+5
+version: 5.0.2+7
 
 environment:
   sdk: '>=2.19.0 <3.0.0'
@@ -28,6 +28,8 @@ dependencies:
   firebase_storage: ^11.2.1
   social_share: ^2.3.1
   google_mobile_ads: ^3.0.0
+  facebook_audience_network: ^1.0.1
+  flutter_adfit: ^1.1.2
 
 dev_dependencies:
   flutter_test:
