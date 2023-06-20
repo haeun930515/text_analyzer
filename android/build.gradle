@@ -2,18 +2,12 @@ buildscript {
     ext.kotlin_version = '1.7.10'
     repositories {
         google()
-        mavenCentral() 
-        maven { 
-            url "https://devrepo.kakao.com/nexus/content/groups/public"
-            allowInsecureProtocol = true
-         }
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
-        // START: FlutterFire Configuration
-        classpath 'com.google.gms:google-services:4.3.10'
-        // END: FlutterFire Configuration
+        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath 'com.google.gms:google-services:4.3.15'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -22,19 +16,12 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { 
-            url "https://devrepo.kakao.com/nexus/content/groups/public"
-            allowInsecureProtocol = true
-         }
     }
 }
-
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(':app')
+    evaluationDependsOn(':app')
 }
 
 tasks.register("clean", Delete) {

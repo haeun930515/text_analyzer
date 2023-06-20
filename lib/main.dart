@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -16,16 +15,6 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-const Map<String, String> UNIT_ID = kReleaseMode
-    ? {
-        'ios': 'ca-app-pub-8738315695455286/9522334783',
-        'android': 'ca-app-pub-8738315695455286/5479147991',
-      }
-    : {
-        'ios': 'ca-app-pub-3940256099942544/2934735716',
-        'android': 'ca-app-pub-3940256099942544/6300978111',
-      };
-
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // 키 초기화
@@ -38,9 +27,6 @@ void main() async {
     nativeAppKey: dotenv.env['KAKAO_NATIVE_APP_KEY']!,
     javaScriptAppKey: dotenv.env['KAKAO_JS_APP_KEY']!,
   );
-
-  // 카카오 로그인 해시 키 받는 함수
-  hasykey();
 
   MobileAds.instance.initialize();
 
@@ -76,9 +62,4 @@ class MainApp extends StatelessWidget {
       home: const StartScreen(),
     );
   }
-}
-
-void hasykey() async {
-  var hasykey = await KakaoSdk.origin;
-  print(hasykey);
 }

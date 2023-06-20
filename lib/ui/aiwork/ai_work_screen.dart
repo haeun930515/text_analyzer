@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/openai_provider.dart';
 import 'package:text_analyzer/utils/strings.dart';
 import '../result/result_screen.dart';
-import 'package:flutter_adfit/flutter_adfit.dart';
 
 class AiWorkScreen extends StatefulWidget {
   const AiWorkScreen({super.key, required this.input});
@@ -169,28 +168,7 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
           const SizedBox(
             height: 30,
           ),
-          SizedBox(
-              height: 250,
-              child: AdFitBanner(
-                adId: Platform.isIOS
-                    ? 'DAN-2nNkPKdKcqpNTw5J'
-                    : Platform.isAndroid
-                        ? 'DAN-EtlopZ9bc05D6PCJ'
-                        : '',
-                adSize: AdFitBannerSize.LARGE_RECTANGLE,
-                listener: (AdFitEvent event, AdFitEventData data) {
-                  switch (event) {
-                    case AdFitEvent.AdReceived:
-                      break;
-                    case AdFitEvent.AdClicked:
-                      break;
-                    case AdFitEvent.AdReceiveFailed:
-                      break;
-                    case AdFitEvent.OnError:
-                      break;
-                  }
-                },
-              )),
+          SizedBox(height: 250, child: Container()),
           const SizedBox(
             height: 40,
           ),
