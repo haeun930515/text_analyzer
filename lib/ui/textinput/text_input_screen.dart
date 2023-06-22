@@ -195,7 +195,7 @@ class _TextInputScreenState extends State<TextInputScreen> {
                                 var str = await TextFromImageProvider()
                                     .getImageFromGallery();
                                 if (str.isNotEmpty) {
-                                  IronSource.showRewardedVideo();
+                                  // IronSource.showRewardedVideo();
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(

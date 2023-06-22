@@ -24,9 +24,9 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
   void initState() {
     super.initState();
     IronSource.loadBanner(
-        size: IronSourceBannerSize.RECTANGLE,
-        position: IronSourceBannerPosition.Top,
-        verticalOffset: 1000);
+        size: IronSourceBannerSize.LARGE,
+        position: IronSourceBannerPosition.Bottom,
+        verticalOffset: 0);
     IronSource.displayBanner();
   }
 
@@ -51,7 +51,6 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
     return WillPopScope(
       onWillPop: () async {
         if (Platform.isAndroid) {
-          IronSource.hideBanner();
           showDialog(
               context: context,
               builder: (context) => Dialog(
@@ -106,7 +105,6 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
                                   MaterialButton(
                                     onPressed: () {
                                       Navigator.pop(context);
-                                      IronSource.displayBanner();
                                     },
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(4)),
@@ -173,13 +171,18 @@ class _AiWorkScreenState extends State<AiWorkScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
+                Consumer<OpenAIProvider>(builder: (context, provider, child) {
+                  return provider.isFinished
+                      ? Image.asset(Strings.picilche, height: 80)
+                      : Image.asset(
+                          Strings.gifStep,
+                          height: 80,
+                        );
+                }),
                 const SizedBox(
-                  height: 230,
-                ),
-                const SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 Consumer<OpenAIProvider>(
                   builder: (context, provider, child) {
