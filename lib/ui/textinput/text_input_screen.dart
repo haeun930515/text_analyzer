@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:facebook_audience_network/ad/ad_interstitial.dart';
-import 'package:facebook_audience_network/ad/ad_rewarded.dart';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ironsource_mediation/ironsource_mediation.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/text_from_image_provider.dart';
 import 'package:text_analyzer/ui/dialog/help_dialog.dart';
@@ -20,41 +19,13 @@ class TextInputScreen extends StatefulWidget {
 }
 
 class _TextInputScreenState extends State<TextInputScreen> {
-  bool _isInterstitialAdLoaded = false;
   bool _isRewardedAdLoaded = false;
   @override
   void initState() {
     super.initState();
-
-    /// please add your own device testingId
-    /// (testingId will print in console if you don't provide  )
-    // FacebookAudienceNetwork.init(
-    //   testingId: "a77955ee-3304-4635-be65-81029b0f5201",
-    //   iOSAdvertiserTrackingEnabled: true,
-    // );
-
-    // Platform.isAndroid ? _loadRewardedVideoAd() : _loadInterstitialAd();
-  }
-
-  void _loadInterstitialAd() {
-    FacebookInterstitialAd.loadInterstitialAd(
-      // placementId: "YOUR_PLACEMENT_ID",
-      placementId: "1300785473839184_1315760852341646",
-      listener: (result, value) {
-        print(">> FAN > Interstitial Ad: $result --> $value");
-        if (result == InterstitialAdResult.LOADED) {
-          _isInterstitialAdLoaded = true;
-        }
-
-        /// Once an Interstitial Ad has been dismissed and becomes invalidated,
-        /// load a fresh Ad by calling this function.
-        if (result == InterstitialAdResult.DISMISSED &&
-            value["invalidated"] == true) {
-          _isInterstitialAdLoaded = false;
-          _loadInterstitialAd();
-        }
-      },
-    );
+    FacebookAudienceNetwork.init(
+        testingId: "d4bad418-6f1c-4240-afb6-10ca1ad1abe1");
+    _loadRewardedVideoAd();
   }
 
   void _loadRewardedVideoAd() {
@@ -161,165 +132,159 @@ class _TextInputScreenState extends State<TextInputScreen> {
           return false;
         }
       },
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 45.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 140,
-              ),
-              Container(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "우리의",
-                        style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
-                      ),
-                      const Row(
-                        children: [
-                          Text(
-                            "티키타캉력은?",
-                            style: TextStyle(
-                                fontSize: 40, fontWeight: FontWeight.bold),
+      child: SafeArea(
+        child: Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 45.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "우리의",
+                          style: TextStyle(
+                              fontSize: 35, fontWeight: FontWeight.bold),
+                        ),
+                        const SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              Text(
+                                "티키타캉력은?",
+                                style: TextStyle(
+                                    fontSize: 35, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "😚",
+                                style: TextStyle(fontSize: 35),
+                              )
+                            ],
                           ),
-                          Text(
-                            "😚",
-                            style: TextStyle(fontSize: 40),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 24,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "대화붙여넣기 버튼을 눌러 ",
+                                style: TextStyle(fontSize: 14),
+                              ),
+                              Text(
+                                "대화가 포함된 이미지를 업로드 해주세요",
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "대화붙여넣기 버튼을 눌러 ",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            Text(
-                              "대화가 포함된 이미지를 업로드 해주세요",
-                              style: TextStyle(fontSize: 14),
+                            ElevatedButton(
+                              onPressed: () async {
+                                var str = await TextFromImageProvider()
+                                    .getImageFromGallery();
+                                if (str.isNotEmpty) {
+                                  IronSource.showRewardedVideo();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => AiWorkScreen(
+                                                input: str,
+                                              )));
+                                } else {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text("발견된 채팅이 없어요!"),
+                                  ));
+
+                                  print("str is null");
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  shadowColor: Colors.black,
+                                  elevation: 20,
+                                  backgroundColor: const Color(0xFF2062f3),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16))),
+                              child: const Column(
+                                children: [
+                                  SizedBox(
+                                    height: 90,
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 30),
+                                    child: SizedBox(
+                                      height: 50,
+                                      width: 100,
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 60,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 40),
+                                  Text(
+                                    "대화붙여넣기",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 60,
+                                  )
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 32,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () async {
-                              var str = await TextFromImageProvider()
-                                  .getImageFromGallery();
-                              if (str.isNotEmpty) {
-                                // Platform.isAndroid
-                                //     ? _showRewardedAd()
-                                //     : _showInterstitialAd();
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => AiWorkScreen(
-                                              input: str,
-                                            )));
-                              } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text("발견된 채팅이 없어요!"),
-                                ));
-
-                                print("str is null");
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                                shadowColor: Colors.black,
-                                elevation: 20,
-                                backgroundColor: const Color(0xFF2062f3),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16))),
-                            child: const Column(
-                              children: [
-                                SizedBox(
-                                  height: 90,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 30),
-                                  child: SizedBox(
-                                    height: 50,
-                                    width: 100,
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 60,
-                                    ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(height: 70),
+                            Container(),
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    side: const BorderSide(
+                                        width: 1.2, color: Color(0xFF2062f3)),
+                                    backgroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                    )),
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => const HelpDialog());
+                                },
+                                child: const Center(
+                                  child: Text(
+                                    "도움이 필요해요👉",
+                                    style: TextStyle(
+                                        color: Color(0xFF2062f3),
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                ),
-                                SizedBox(height: 40),
-                                Text(
-                                  "대화붙여넣기",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 60,
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(height: 70),
-                          Container(),
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  side: const BorderSide(
-                                      width: 1.2, color: Color(0xFF2062f3)),
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  )),
-                              onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => const HelpDialog());
-                              },
-                              child: const Center(
-                                child: Text(
-                                  "도움이 필요해요👉",
-                                  style: TextStyle(
-                                      color: Color(0xFF2062f3),
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              )),
-                        ],
-                      )
-                    ]),
-              )
-            ],
+                                )),
+                          ],
+                        )
+                      ]),
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
-  }
-
-  _showInterstitialAd() {
-    if (_isInterstitialAdLoaded == true) {
-      FacebookInterstitialAd.showInterstitialAd();
-    } else {
-      print("Interstial Ad not yet loaded!");
-    }
   }
 
   _showRewardedAd() {

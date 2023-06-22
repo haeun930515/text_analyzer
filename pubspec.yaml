@@ -29,6 +29,8 @@ dependencies:
   social_share: ^2.3.1
   google_mobile_ads: ^3.0.0
   facebook_audience_network: ^1.0.1
+  ironsource_mediation: ^1.2.0
+  device_preview: ^1.1.0
 
 dev_dependencies:
   flutter_test:
