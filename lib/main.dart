@@ -1,6 +1,9 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:ironsource_mediation/ironsource_mediation.dart';
 import 'package:provider/provider.dart';
 import 'package:text_analyzer/provider/facebook_provider.dart';
 import 'package:text_analyzer/provider/insta_provider.dart';
@@ -28,24 +31,34 @@ void main() async {
     javaScriptAppKey: dotenv.env['KAKAO_JS_APP_KEY']!,
   );
 
+  //Ironsource
+  IronSource.setFlutterVersion("3.10.5");
+  IronSource.init(appKey: "1a7d28b45");
+  IronSource.validateIntegration();
+  IronSource.setAdaptersDebug(true);
+
   MobileAds.instance.initialize();
 
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<OpenAIProvider>(create: (_) => OpenAIProvider()),
-    ChangeNotifierProvider<TextFromImageProvider>(
-        create: (_) => TextFromImageProvider()),
-    ChangeNotifierProvider<ImageShareProvider>(
-        create: (_) => ImageShareProvider()),
-    ChangeNotifierProvider<KakaoShareProvider>(
-        create: (_) => KakaoShareProvider()),
-    ChangeNotifierProvider<InstarShareProvider>(
-        create: (_) => InstarShareProvider()),
-    ChangeNotifierProvider<FacebookShareProvider>(
-        create: (_) => FacebookShareProvider()),
-    ChangeNotifierProvider<ImageShareProvider>(
-        create: (_) => ImageShareProvider()),
-    ChangeNotifierProvider<ResultProvider>(create: (_) => ResultProvider()),
-  ], child: const MainApp()));
+  runApp(DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MultiProvider(providers: [
+            ChangeNotifierProvider<OpenAIProvider>(
+                create: (_) => OpenAIProvider()),
+            ChangeNotifierProvider<TextFromImageProvider>(
+                create: (_) => TextFromImageProvider()),
+            ChangeNotifierProvider<ImageShareProvider>(
+                create: (_) => ImageShareProvider()),
+            ChangeNotifierProvider<KakaoShareProvider>(
+                create: (_) => KakaoShareProvider()),
+            ChangeNotifierProvider<InstarShareProvider>(
+                create: (_) => InstarShareProvider()),
+            ChangeNotifierProvider<FacebookShareProvider>(
+                create: (_) => FacebookShareProvider()),
+            ChangeNotifierProvider<ImageShareProvider>(
+                create: (_) => ImageShareProvider()),
+            ChangeNotifierProvider<ResultProvider>(
+                create: (_) => ResultProvider()),
+          ], child: const MainApp())));
 }
 
 class MainApp extends StatelessWidget {
@@ -54,6 +67,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       initialRoute: '/start',
       routes: {
         '/start': (context) => const StartScreen(),

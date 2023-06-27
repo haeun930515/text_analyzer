@@ -91,90 +91,88 @@ class StartScreen extends StatelessWidget {
           return false;
         }
       },
-      child: Scaffold(
-          appBar: AppBar(
+      child: SafeArea(
+        child: Scaffold(
             backgroundColor: const Color(0xFF2062f3),
-            elevation: 0,
-            automaticallyImplyLeading: Platform.isAndroid,
-          ),
-          backgroundColor: const Color(0xFF2062f3),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 45.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                const Center(
-                  child: Text(
-                    "티키",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 65,
-                        fontWeight: FontWeight.bold),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 45.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(
+                    height: 30,
                   ),
-                ),
-                const Center(
-                  child: Text(
-                    "타캉",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 65,
-                        fontWeight: FontWeight.bold),
+                  const Center(
+                    child: Text(
+                      "티키",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 65,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 15),
-                const Center(
-                  child: Text(
-                    "AI가 분석해주는",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                  const Center(
+                    child: Text(
+                      "타캉",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 65,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                const Center(
-                  child: Text(
-                    "우리의 대화 능력치는?",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                  const SizedBox(height: 15),
+                  const Center(
+                    child: Text(
+                      "AI가 분석해주는",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 40),
-                Image.asset(
-                  "assets/images/loading1.png",
-                  height: 220,
-                ),
-                const SizedBox(height: 60),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/input');
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.0),
-                        color: Colors.white),
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Center(
-                        child: Text(
-                          "시작하기",
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF2062f3),
+                  const Center(
+                    child: Text(
+                      "우리의 대화 능력치는?",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                  Image.asset(
+                    "assets/images/loading1.png",
+                    height: 220,
+                  ),
+                  const SizedBox(height: 60),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/input');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.0),
+                          color: Colors.white),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Text(
+                            "시작하기",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF2062f3),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                )
-              ],
-            ),
-          )),
+                  )
+                ],
+              ),
+            )),
+      ),
     );
   }
 }

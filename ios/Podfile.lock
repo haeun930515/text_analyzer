@@ -887,6 +887,10 @@ PODS:
   - GTMSessionFetcher/Core (2.3.0)
   - image_picker_ios (0.0.1):
     - Flutter
+  - ironsource_mediation (1.2.0):
+    - Flutter
+    - IronSourceSDK (= 7.3.0)
+  - IronSourceSDK (7.3.0.0)
   - kakao_flutter_sdk_common (1.4.3):
     - Flutter
   - leveldb-library (1.22.2)
@@ -1045,6 +1049,7 @@ DEPENDENCIES:
   - google_mobile_ads (from `.symlinks/plugins/google_mobile_ads/ios`)
   - GoogleMLKit/TextRecognitionKorean (~> 4.0.0)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - ironsource_mediation (from `.symlinks/plugins/ironsource_mediation/ios`)
   - kakao_flutter_sdk_common (from `.symlinks/plugins/kakao_flutter_sdk_common/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
@@ -1077,6 +1082,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - IronSourceSDK
     - leveldb-library
     - Libuv-gRPC
     - MLImage
@@ -1156,6 +1162,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_mobile_ads/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
+  ironsource_mediation:
+    :path: ".symlinks/plugins/ironsource_mediation/ios"
   kakao_flutter_sdk_common:
     :path: ".symlinks/plugins/kakao_flutter_sdk_common/ios"
   path_provider_foundation:
@@ -1215,6 +1223,8 @@ SPEC CHECKSUMS:
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
+  ironsource_mediation: 28492b85dff41fca5496a7ba9c68a2994b0b2c0f
+  IronSourceSDK: 70d098472ea63fa8d58e47ad79ad761ad256ce15
   kakao_flutter_sdk_common: 31d55af8ed73538126d26d42bf9e8049a2f76da4
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
@@ -1255,6 +1265,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
-PODFILE CHECKSUM: 025d7c3c5aec127d8ca1c88f3ac90d0ab82fce0b
+PODFILE CHECKSUM: 815abe6a4d4b08a0d589fde53b42b25b25b0dbd0
 
 COCOAPODS: 1.12.1
